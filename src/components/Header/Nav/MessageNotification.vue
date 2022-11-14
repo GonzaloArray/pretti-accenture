@@ -9,9 +9,7 @@
     </li>
 </template>
 <script>
-export default {
 
-}
 </script>
 <style scoped>
 .header-nav .notifications .notification-item {
