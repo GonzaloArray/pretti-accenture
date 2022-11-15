@@ -1,49 +1,38 @@
-<template>
-	<div class="">
-		<Header @new="sendMessage" />
-
-		<Sidebar :valor="valor" />
-
-		<main id="main" class="container mx-auto" :class="!valor && 'toggle-sidebar'">
-
-			<RouterView />
-
-		</main>
-		<footer id="footer">
-
-		</footer>
-
-	</div>
-</template>
-<script>
+<script setup>
+import { onMounted, ref } from '@vue/runtime-core';
 import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/Header/Header.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue';
 
+const showModal = ref(false)
 
-export default {
-	data() {
-		return {
-			valor: false
-		}
-	},
-	components: {
-		Header,
-		Sidebar
-	},
 
-	methods: {
-		sendMessage: function (param) {
-			this.valor = param
-		}
-	},
-}
+
 
 </script>
+<template>
+	<div class="">
+		<Header :show="showModal" @close="showModal = !showModal" />
+
+		<Sidebar :valor="showModal" />
+
+		<main id="main" class="contenedor mx-auto" :class="showModal && 'toggle-sidebar'">
+
+			<RouterView />
+
+		</main>
+		<footer id="footer" class="contenedor mx-auto">
+			<hr>
+			<p class="text-center fs-7">© Designer <a href="#">J. Gonzalo Arrayaran</a> Proyecto Accenture.</p>
+		</footer>
+
+	</div>
+</template>
+
 <style scoped>
 	#main {
 		margin-top: 60px;
-		padding: 20px 30px;
+		padding: 20px 10px;
 		transition: all 0.3s;
 	}
 @media (min-width: 1200px) {

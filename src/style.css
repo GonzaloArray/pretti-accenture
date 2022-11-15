@@ -35,3 +35,20 @@ h6 {
 .fs-7{
     font-size: 12px;
 }
+
+.bg-primario{
+    background-color: #317AC7;
+}
+.bg-secundario{
+    background-color: #7CF6FD;
+}
+@media (min-width: 768px) {
+    .contenedor{
+        max-width: 90%;
+    }
+}
+@media (min-width: 1200px) {
+    .contenedor{
+        max-width: 1100px;
+    }
+}

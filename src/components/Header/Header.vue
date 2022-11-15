@@ -1,3 +1,16 @@
+<script setup>
+import { ref } from 'vue';
+import Nav from './Nav/Nav.vue';
+import Search from './Search.vue';
+
+
+const props = defineProps({
+    showModal: Boolean
+})
+
+
+
+</script>
 <template>
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -5,9 +18,9 @@
             <RouterLink class="logo d-flex align-items-center"  to="/index">
                 <img src="../../assets/logo.png" alt="Pretti in the world">
             </RouterLink>
-            <button class="border-0" @click="handlerEvent">
+            <button class="border-0" @click="$emit('close')">
                 <span class="material-icons-outlined toggle-sidebar-btn">
-                    {{boolean ? "close":"menu"}}
+                    {{showModal ? "menu":"close"}}
                 </span>
             </button>
         </div>
@@ -17,29 +30,7 @@
         <Nav />
     </header>
 </template>
-<script>
-import Nav from './Nav/Nav.vue';
-import Search from './Search.vue';
 
-
-export default {
-    components: {
-        Search,
-        Nav
-    },
-    data() {
-        return {
-            boolean: false
-        }
-    },
-    methods: {
-        handlerEvent: function () {
-            this.$emit('new', this.boolean = !this.boolean)
-        }
-    }
-}
-
-</script>
 <style scoped>
 /* Heaader */
 .logo {
