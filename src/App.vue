@@ -5,27 +5,31 @@ import Header from './components/Header/Header.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue';
 
 const showModal = ref(false)
-
-
-
+const darkMode = ref(false)
+function handleDark(msj) {
+	darkMode.value = msj
+	if (msj) {
+		document.body.classList.add("color-oscuro", "bg-oscuro")
+	}else{
+		document.body.classList.remove("color-oscuro", "bg-oscuro")
+	}
+}
 
 </script>
 <template>
-	<div class="">
-		<Header :show="showModal" @close="showModal = !showModal" />
+	<div>
+		<Header :show="showModal" @close="showModal = !showModal" @DarkMode="handleDark"/>
 
 		<Sidebar :valor="showModal" />
 
 		<main id="main" class="contenedor mx-auto" :class="showModal && 'toggle-sidebar'">
-
-			<RouterView />
+			<RouterView :darkMode="darkMode"/>
 
 		</main>
 		<footer id="footer" class="contenedor mx-auto">
 			<hr>
-			<p class="text-center fs-7">© Designer <a href="#">J. Gonzalo Arrayaran</a> Proyecto Accenture.</p>
+			<p class="text-center fs-7 m-0 pb-3">© Designer <a href="#">J. Gonzalo Arrayaran</a> Project Accenture.</p>
 		</footer>
-
 	</div>
 </template>
 

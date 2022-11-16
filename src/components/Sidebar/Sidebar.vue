@@ -92,7 +92,7 @@ a {
 
 .sidebar {
     position: fixed;
-    top: 60px;
+    top: 50px;
     left: 0;
     bottom: 0;
     width: 300px;

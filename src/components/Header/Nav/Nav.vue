@@ -6,7 +6,7 @@
 
                     <Notification icon="notifications" cant="2" color="bg-primary" />
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications ">
                         <ViewAll msj="Notification"/>
                         <li>
                             <hr class="dropdown-divider">
@@ -121,7 +121,7 @@
         content: "";
         width: 13px;
         height: 13px;
-        background: #fff;
+        background: #317AC7;
         position: absolute;
         top: -7px;
         right: 20px;

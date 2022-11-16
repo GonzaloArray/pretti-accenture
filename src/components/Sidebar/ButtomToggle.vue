@@ -2,7 +2,7 @@
 
         <a
             @click="handleArrow"
-            class="nav-link collapsed"
+            class="nav-link collapsed buttonLink"
             :data-bs-target="data"
             data-bs-toggle="collapse"
             href="#"

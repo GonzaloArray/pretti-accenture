@@ -52,3 +52,52 @@ h6 {
         max-width: 1100px;
     }
 }
+
+/* Dark mode config */
+.bg-oscuro header
+{
+    background-color: #222121!important;
+    box-shadow: 0px 0px 1px 1px white!important;
+}
+
+.bg-oscuro .sublink{
+    color: #7CF6FD;
+}
+.bg-oscuro .buttonLink{
+    color: #7CF6FD!important;
+    background-color: #222121!important;
+}
+
+.bg-oscuro .post,
+.bg-oscuro section,
+.bg-oscuro aside,
+.bg-oscuro
+{
+    background-color: #313030!important;
+}
+body {
+    background-color: #707D9D!important;
+}
+
+.bg-oscuro
+{
+    background-color: #242526!important;
+}
+
+.bg-oscuro .sendPost{
+    color: white!important;
+}
+
+
+.color-oscuro h2,
+.color-oscuro h1,
+.color-oscuro p,
+.color-oscuro hr,
+.color-oscuro h3,
+.color-oscuro h4,
+.color-oscuro h5,
+.color-oscuro h6
+{
+    color: #B0B3B8!important;
+}
+

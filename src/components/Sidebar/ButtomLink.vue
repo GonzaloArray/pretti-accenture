@@ -1,6 +1,6 @@
 <template>
     <li class="nav-item">
-        <RouterLink class="nav-link collapsed" :to="'/'+href">
+        <RouterLink class="nav-link collapsed buttonLink" :to="'/'+href">
             <span class="material-icons-outlined opacity me-2">
                 {{ icon }}
             </span>

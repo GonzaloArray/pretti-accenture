@@ -1,6 +1,6 @@
 <template>
     <li>
-        <a href="#">
+        <a href="#" class="sublink">
             <span class="material-icons-outlined fuente me-2">
                 {{ icon }}
             </span>
