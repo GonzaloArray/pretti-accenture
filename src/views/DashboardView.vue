@@ -8,15 +8,21 @@ import MessagePost from '../components/Post/MessagePost.vue';
 import { ref } from '@vue/reactivity'
 
 
-const arrayPost = ref(null);
+const arrayPost = ref([]);
 
 function messagePost(array) {
-    arrayPost.value = array;
+
+    arrayPost.value.unshift(array);
+
+}
+
+function handlerId(msj){
+    arrayPost.value = arrayPost.value.filter(post => post.id !== msj );
 }
 
 </script>
 <template>
-    <DivisorSection title="Dashboard" subTitle="Dashboard"/>
+    <!-- <DivisorSection title="Dashboard" subTitle="Dashboard"/> -->
     <div class="d-flex flex-column flex-md-row justify-content-between">
 
         <div class="col-12 col-md-8 me-2">
@@ -24,8 +30,8 @@ function messagePost(array) {
                 <!-- Send Post -->
                 <SendPost @message="messagePost"/>
                 <div v-if="arrayPost !== null">
-                    <ul class="ul" v-for="post in arrayPost.value" :key="post.id">
-                        <MessagePost :comment="post.comment" :id="post.id"/>
+                    <ul class="ul">
+                        <MessagePost v-for="post in arrayPost" :key="post.id" :comment="post.comment" :date="post.date" :id="post.id" @idProps="handlerId"/>
                     </ul>
                 </div>
             </div>

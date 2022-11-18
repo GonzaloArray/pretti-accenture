@@ -1,21 +1,39 @@
 <script setup>
-    import { ref } from "@vue/reactivity"
+import { ref } from "@vue/reactivity"
 
-    const valor = ref("")
-    const arrayPosts = ref([])
-    // Funcion
-    function handlerPost(){
-        arrayPosts.value.push({
+const valor = ref("")
+const arrayPosts = ref(null)
+
+// emit
+const emits = defineEmits(["message"])
+
+// Funcion
+function handlerPost() {
+
+    if (valor.value !== '') {
+        const fechaActual = fecha()
+        arrayPosts.value = {
             comment: valor.value,
             id: crypto.randomUUID(),
-        })
+            date: fechaActual
+        }
+        emits("message", arrayPosts.value)
 
-        valor.value = ""
+        valor.value = "";
+    }
+}
+function fecha() {
+    const fechaNueva = new Date();
+
+    const opcionesConfig = {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
     }
 
-    // emit
-    const emits = defineEmits(["message"])
-    emits("message", arrayPosts)
+    return fechaNueva.toLocaleDateString('en-US', opcionesConfig);
+}
+
 </script>
 
 <template>
@@ -28,7 +46,7 @@
                         <input type="text" v-model="valor" class="border border-0 bg-transparent form-control">
                         <button class="form__send p-0 m-0">
                             <span class="material-icons-outlined sendPost fs-6 opacity-50 mt-1 px-2">
-                                send
+                                {{valor.length > 0 ? "send" : "feedback"}}
                             </span>
                         </button>
                     </div>

@@ -23,7 +23,7 @@ function handleDark(msj) {
 		<Sidebar :valor="showModal" />
 
 		<main id="main" class="contenedor mx-auto" :class="showModal && 'toggle-sidebar'">
-			<RouterView :darkMode="darkMode"/>
+			<RouterView />
 
 		</main>
 		<footer id="footer" class="contenedor mx-auto">

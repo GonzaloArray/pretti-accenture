@@ -8,7 +8,7 @@ const darkMode = ref(false);
 const props = defineProps({
     show: Boolean,
 })
-const emits = defineEmits(["DarkMode"])
+const emits = defineEmits(["DarkMode", "close"])
 
 function handlerDarkMode() {
     darkMode.value = !darkMode.value;
@@ -31,6 +31,7 @@ function handlerDarkMode() {
         </div>
 
         <Search />
+
         <button class="ms-3 border-0 rounded-3 text-light" :class="darkMode ? 'bg-info':'bg-dark'" @click="handlerDarkMode">
             <span class="material-icons-outlined mt-1 px-2 fs-6">
                 {{darkMode ? "nights_stay": "wb_sunny"}}
