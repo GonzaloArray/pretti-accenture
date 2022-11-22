@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from "@vue/reactivity"
+import { fecha } from "../../handler/fecha";
 
 const valor = ref("")
 const arrayPosts = ref(null)
+
 
 // emit
 const emits = defineEmits(["message"])
@@ -11,11 +13,10 @@ const emits = defineEmits(["message"])
 function handlerPost() {
 
     if (valor.value !== '') {
-        const fechaActual = fecha()
         arrayPosts.value = {
             comment: valor.value,
             id: crypto.randomUUID(),
-            date: fechaActual,
+            date: fecha(),
             children: []
         }
         emits("message", arrayPosts.value)
@@ -23,17 +24,7 @@ function handlerPost() {
         valor.value = "";
     }
 }
-function fecha() {
-    const fechaNueva = new Date();
 
-    const opcionesConfig = {
-        year: 'numeric',
-        month: 'long',
-        day: '2-digit',
-    }
-
-    return fechaNueva.toLocaleDateString('en-US', opcionesConfig);
-}
 
 </script>
 

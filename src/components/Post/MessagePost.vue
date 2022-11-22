@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from "@vue/reactivity";
 import { computed } from "@vue/runtime-core";
+import { fecha } from "../../handler/fecha";
 import Comment from "./Comment.vue";
 import UserComment from "./UserComment.vue";
+
 
 const props = defineProps({
     model: Object
@@ -42,7 +44,13 @@ function changeType() {
 }
 
 function addChild() {
-    props.model.children.push({ comment: comment.value })
+    props.model.children.push({
+        comment: comment.value,
+        id: crypto.randomUUID(),
+        date: fecha(),
+        children: []
+    })
+    console.log(props.model)
     comment.value = ""
 }
 
@@ -54,8 +62,7 @@ function addChild() {
                 <img src="../../assets/perfil.png" class="me-2 with" alt="">
                 <h2 class="fs-6 mt-2 fw-bold fs-per">@Heinsenberg Dev</h2>
             </div>
-            <p class="fs-8 position-absolute bottom-0 end-0 mb-1 me-3">Post: <span class="fw-bold">{{ model.date
-            }}</span></p>
+            <p class="fs-8 position-absolute bottom-0 end-0 mb-1 me-3">Post: <span class="fw-bold">{{model.date}}</span></p>
             <p class="fs-6 mt-2">{{ model.comment }}</p>
             <!-- Comment -->
             <!-- <Comment @comment-user="handlerComment"/> -->
