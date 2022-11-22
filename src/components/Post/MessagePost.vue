@@ -9,41 +9,47 @@ import UserComment from "./UserComment.vue";
 const props = defineProps({
     model: Object
 })
+
 const emits = defineEmits(['idProps']);
 
 const idProp = ref("");
-const comment = ref("")
-const isOpen = ref(false)
+const comment = ref("");
+const isOpen = ref(false);
 const isFolder = computed(() => {
     return props.model.children && props.model.children.length
 })
 
 
 function handlerId() {
-
     idProp.value = props.id
 
     emits('idProps', idProp.value);
 }
 
 function toggle() {
-    isOpen.value = !isOpen.value
+    isOpen.value = !isOpen.value;
 }
 
 
 function changeType() {
-    console.log(isFolder.value)
-    if (isFolder.value > 0) {
-        addChild()
+    if (comment.value !== "") {
 
-    } else if (!isFolder.value) {
-        props.model.children = []
-        addChild()
-        isOpen.value = true
+        if (isFolder.value > 0) {
+            addChild();
+
+        } else if (!isFolder.value) {
+            props.model.children = []
+            addChild()
+            isOpen.value = true;
+        }
+
+        comment.value = ""
     }
+
 }
 
 function addChild() {
+
     props.model.children.push({
         comment: comment.value,
         id: crypto.randomUUID(),
@@ -62,7 +68,9 @@ function addChild() {
                 <img src="../../assets/perfil.png" class="me-2 with" alt="">
                 <h2 class="fs-6 mt-2 fw-bold fs-per">@Heinsenberg Dev</h2>
             </div>
-            <p class="fs-8 position-absolute bottom-0 end-0 mb-1 me-3">Post: <span class="fw-bold">{{model.date}}</span></p>
+            <p class="fs-8 position-absolute bottom-0 end-0 mb-1 me-3">Post: <span class="fw-bold">{{ model.date
+            }}</span>
+            </p>
             <p class="fs-6 mt-2">{{ model.comment }}</p>
             <!-- Comment -->
             <!-- <Comment @comment-user="handlerComment"/> -->
@@ -89,7 +97,9 @@ function addChild() {
                         </button>
                     </div>
                 </div>
-                <span class="item fs-7" @click="toggle" v-if="isFolder">{{ isOpen ? '[-]' : `Comments ${model.children.length}` }}</span>
+                <span class="item fs-7" @click="toggle" v-if="isFolder">{{ isOpen ? '[-]' : `Comments
+                                    ${model.children.length}`
+                }}</span>
             </form>
 
             <ul class="list-group" v-show="isOpen" v-if="isFolder">
@@ -147,9 +157,10 @@ function addChild() {
 
 
 <style scoped>
-li{
+li {
     list-style: none;
 }
+
 .with {
     width: 1.7rem;
 }
@@ -165,20 +176,25 @@ li{
 .fs-per {
     font-size: 15px;
 }
+
 .outline {
     outline: none;
 }
-.withComment{
+
+.withComment {
     width: 100%;
 }
+
 @media (min-width: 768px) {
-    .withComment{
+    .withComment {
         width: 60%;
     }
 }
-.height{
+
+.height {
     height: 30px;
 }
+
 .item {
     cursor: pointer;
     line-height: 1.5;
