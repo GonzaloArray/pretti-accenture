@@ -16,8 +16,8 @@ function messagePost(array) {
 
 }
 
-function handlerId(msj){
-    arrayPost.value = arrayPost.value.filter(post => post.id !== msj );
+function handlerId(msj) {
+    arrayPost.value = arrayPost.value.filter(post => post.id !== msj);
 }
 
 </script>
@@ -26,15 +26,15 @@ function handlerId(msj){
     <div class="d-flex flex-column flex-md-row justify-content-between">
 
         <div class="col-12 col-md-8 me-2">
-            <div class="">
-                <!-- Send Post -->
-                <SendPost @message="messagePost"/>
-                <div v-if="arrayPost !== null">
-                    <ul class="ul">
-                        <MessagePost v-for="post in arrayPost" :key="post.id" :comment="post.comment" :date="post.date" :id="post.id" @idProps="handlerId"/>
-                    </ul>
-                </div>
+
+            <!-- Send Post -->
+            <SendPost @message="messagePost" />
+            <div v-if="arrayPost !== null">
+                <ul class="ul">
+                    <MessagePost v-for="post in arrayPost" :key="post.id" :model="post" @idProps="handlerId" />
+                </ul>
             </div>
+
         </div>
         <div class="col-12 col-md-4">
             <div class="col-12">
@@ -46,9 +46,11 @@ function handlerId(msj){
 </template>
 
 <style scoped>
-    .ul{
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
+.ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
 </style>

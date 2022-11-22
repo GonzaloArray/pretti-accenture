@@ -129,3 +129,11 @@ body::-webkit-scrollbar-thumb {
     background-color: #afafaf4a;
     outline: none;
 }
+.router-link-active{
+    color: #7CF6FD!important;
+    background-color: #565454!important;
+}
+.bg-oscuro .router-link-active{
+    color: white!important;
+    background-color: #565454!important;
+}

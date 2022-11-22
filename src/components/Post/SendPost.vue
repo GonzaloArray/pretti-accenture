@@ -15,7 +15,8 @@ function handlerPost() {
         arrayPosts.value = {
             comment: valor.value,
             id: crypto.randomUUID(),
-            date: fechaActual
+            date: fechaActual,
+            children: []
         }
         emits("message", arrayPosts.value)
 

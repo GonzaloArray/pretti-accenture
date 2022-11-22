@@ -4,27 +4,14 @@ import {fecha} from "../../handler/fecha"
 
 const comment = ref("");
 const objComment = ref([]);
-function handlerComment() {
+const emits = defineEmits(["comment-user"])
 
-    if (comment.value !== "") {
-        const fechaActual = fecha()
-        objComment.value.push( {
-            comment: comment.value,
-            id: crypto.randomUUID(),
-            date: fechaActual
-        })
-        // emits("message", arrayPosts.value)
-        console.log(objComment.value)
 
-        comment.value = "";
-
-    }
-}
 </script>
 <template>
-    <form>
+    <form :class="{ bold: isFolder }" @click="toggle" @submit.prevent="changeType">
         <div class="height rounded-pill border-0 px-2 mb-4 mb-md-2 with comment d-flex justify-content-between align-items-center">
-            <input @keydown.enter.prevent="handlerComment" v-model="comment" type="text" class="fs-7 border-0 bg-transparent outline"
+            <input v-model="comment" type="text" class="fs-7 border-0 bg-transparent outline"
                 placeholder="comment post...">
             <div class="d-flex align-items-center">
                 <button class="btn btn-sm mt-1">

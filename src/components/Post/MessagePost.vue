@@ -1,16 +1,21 @@
 <script setup>
 import { ref } from "@vue/reactivity";
+import { computed } from "@vue/runtime-core";
 import Comment from "./Comment.vue";
-
+import UserComment from "./UserComment.vue";
 
 const props = defineProps({
-    comment: String,
-    id: String,
-    date: String
+    model: Object
 })
 const emits = defineEmits(['idProps']);
 
 const idProp = ref("");
+const comment = ref("")
+const isOpen = ref(false)
+const isFolder = computed(() => {
+    return props.model.children && props.model.children.length
+})
+
 
 function handlerId() {
 
@@ -18,6 +23,29 @@ function handlerId() {
 
     emits('idProps', idProp.value);
 }
+
+function toggle() {
+    isOpen.value = !isOpen.value
+}
+
+
+function changeType() {
+    console.log(isFolder.value)
+    if (isFolder.value > 0) {
+        addChild()
+
+    } else if (!isFolder.value) {
+        props.model.children = []
+        addChild()
+        isOpen.value = true
+    }
+}
+
+function addChild() {
+    props.model.children.push({ comment: comment.value })
+    comment.value = ""
+}
+
 </script>
 <template>
     <li class="my-4 bg-white rounded-1 shadow post">
@@ -26,11 +54,42 @@ function handlerId() {
                 <img src="../../assets/perfil.png" class="me-2 with" alt="">
                 <h2 class="fs-6 mt-2 fw-bold fs-per">@Heinsenberg Dev</h2>
             </div>
-            <p class="fs-8 position-absolute bottom-0 end-0 mb-1 me-3">Post: <span class="fw-bold">{{ date }}</span></p>
-            <p class="fs-6 mt-2">{{ comment }}</p>
-            
+            <p class="fs-8 position-absolute bottom-0 end-0 mb-1 me-3">Post: <span class="fw-bold">{{ model.date
+            }}</span></p>
+            <p class="fs-6 mt-2">{{ model.comment }}</p>
             <!-- Comment -->
-            <Comment />
+            <!-- <Comment @comment-user="handlerComment"/> -->
+            <form :class="{ bold: isFolder }" @submit.prevent="changeType">
+                <div
+                    class="height rounded-pill border-0 px-2 mb-4 mb-md-2 withComment comment d-flex justify-content-between align-items-center">
+                    <input v-model="comment" type="text" class="fs-7 border-0 bg-transparent outline"
+                        placeholder="comment post...">
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-sm mt-1">
+                            <span class="material-icons-outlined fs-6">
+                                sentiment_satisfied_alt
+                            </span>
+                        </button>
+                        <button class="btn btn-sm mt-1">
+                            <span class="material-icons-outlined fs-6">
+                                gif_box
+                            </span>
+                        </button>
+                        <button class="btn btn-sm mt-1">
+                            <span class="material-icons-outlined fs-6">
+                                add_a_photo
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <span class="item fs-7" @click="toggle" v-if="isFolder">{{ isOpen ? '[-]' : `Comments ${model.children.length}` }}</span>
+            </form>
+
+            <ul class="list-group" v-show="isOpen" v-if="isFolder">
+                <MessagePost class="item" v-for="model in model.children" :model="model" :key="model.id">
+                </MessagePost>
+            </ul>
+
 
             <button class="position-absolute top-0 end-0 me-2 mt-1 border-0 bg-transparent" type="button"
                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -81,6 +140,9 @@ function handlerId() {
 
 
 <style scoped>
+li{
+    list-style: none;
+}
 .with {
     width: 1.7rem;
 }
@@ -95,5 +157,23 @@ function handlerId() {
 
 .fs-per {
     font-size: 15px;
+}
+.outline {
+    outline: none;
+}
+.withComment{
+    width: 100%;
+}
+@media (min-width: 768px) {
+    .withComment{
+        width: 60%;
+    }
+}
+.height{
+    height: 30px;
+}
+.item {
+    cursor: pointer;
+    line-height: 1.5;
 }
 </style>>

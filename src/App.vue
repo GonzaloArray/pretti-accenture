@@ -4,6 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/Header/Header.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue';
 
+
 const showModal = ref(false)
 const darkMode = ref(false)
 function handleDark(msj) {
