@@ -20,7 +20,7 @@ function handlerDarkMode() {
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <RouterLink class="logo d-flex align-items-center" to="/index">
+            <RouterLink class="logo d-flex align-items-center bg-transparent" to="">
                 <img src="../../assets/logo.png" alt="Pretti in the world">
             </RouterLink>
             <button class="border-0" @click="$emit('close')">
@@ -83,7 +83,9 @@ function handlerDarkMode() {
     cursor: pointer;
     color: #012970;
 }
-
+.bg-transparent{
+    background-color: transparent!important;;
+}
 button {
     background-color: transparent;
 }

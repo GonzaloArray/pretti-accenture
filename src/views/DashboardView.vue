@@ -9,7 +9,8 @@ import { ref } from '@vue/reactivity'
 
 
 const arrayPost = ref([]);
-
+console.log(arrayPost.value);
+const valor = ref("")
 function messagePost(array) {
 
     arrayPost.value.unshift(array);
@@ -17,6 +18,9 @@ function messagePost(array) {
 }
 
 function handlerId(msj) {
+    console.log(msj)
+    valor.value = msj
+
     arrayPost.value = arrayPost.value.filter(post => post.id !== msj);
 }
 

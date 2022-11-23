@@ -12,9 +12,9 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
     "material-icons": "^1.12.1",
+    "pinia": "^2.0.25",
     "vue": "^3.2.41",
-    "vue-router": "^4.1.6",
-    "vuex": "^4.1.0"
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",

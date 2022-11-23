@@ -2,7 +2,7 @@
 import { ref } from "@vue/reactivity";
 import { computed } from "@vue/runtime-core";
 import { fecha } from "../../handler/fecha";
-import ChildrenPost from "./ChildrenPost.vue";
+
 
 const props = defineProps({
     model: Object
@@ -13,11 +13,16 @@ const emits = defineEmits(['idProps']);
 const idProp = ref("");
 const comment = ref("");
 const isOpen = ref(false);
+const modalResponse = ref(false);
+
+
 const isFolder = computed(() => {
     return props.model.children && props.model.children.length
 })
 
-
+function handleResponse() {
+    modalResponse.value = !modalResponse.value;
+}
 
 function handlerId() {
     idProp.value = props.model.id
@@ -27,6 +32,7 @@ function handlerId() {
 
 function toggle() {
     isOpen.value = !isOpen.value;
+
 }
 
 
@@ -66,8 +72,8 @@ setInterval(() => {
 
 </script>
 <template>
-    <li class="my-2 bg-white rounded-1 shadow post" :class="model.children >= 1 && 'bg-dark' ">
-        <div class="pb-2 px-3 position-relative">
+    <li class="mb-2 bg-white rounded-4 shadow  post children" :class="model.children >= 1 && 'bg-dark'">
+        <div class="py-1 px-3 position-relative">
             <div class="d-flex align-items-center">
                 <img src="../../assets/perfil.png" class="me-2 with" alt="">
                 <div class="d-flex flex-column">
@@ -77,13 +83,17 @@ setInterval(() => {
                             {{ fechaJ > 1 ? `- ${fechaJ} min read` : "- right now" }}
                         </span>
                     </p>
+
                 </div>
             </div>
 
-            <p class="fs-6 mt-2">{{ model.comment }}</p>
-            <!-- Comment -->
-            <!-- <Comment @comment-user="handlerComment"/> -->
-            <form :class="{ bold: isFolder }" @submit.prevent="changeType">
+            <p class="fs-6 mt-0 mb-1">{{ model.comment }}</p>
+
+            <div v-if="modalResponse == false">
+                <p class="fw-bold fs-8 m-0" @click="handleResponse">Response</p>
+            </div>
+            <form v-else :class="{ bold: isFolder }" @submit.prevent="changeType">
+
                 <div
                     class="height rounded-pill border-0 px-2 mb-4 mb-md-2 withComment comment d-flex justify-content-between align-items-center">
                     <input v-model="comment" type="text" class="fs-7 border-0 bg-transparent outline"
@@ -106,9 +116,9 @@ setInterval(() => {
                         </button>
                     </div>
                 </div>
-                <span class="item fs-7" @click="toggle" v-if="isFolder">{{ isOpen ? '[-]' : `Comments
+                <p class="item m-0 fs-7" @click="toggle" v-if="isFolder">{{ isOpen ? '[-]' : `Comments
                                     ${model.children.length}`
-                }}</span>
+                }}</p>
             </form>
 
             <ul class="list-group" v-show="isOpen" v-if="isFolder">
@@ -171,7 +181,7 @@ li {
 }
 
 .with {
-    width: 1.7rem;
+    width: 1.5rem;
 }
 
 .bg-transparent {
