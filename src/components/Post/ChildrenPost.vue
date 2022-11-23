@@ -2,6 +2,10 @@
 import { ref } from "@vue/reactivity";
 import { computed } from "@vue/runtime-core";
 import { fecha } from "../../handler/fecha";
+import Button from "../Buttons/Button.vue";
+import ButtonItem from "../Buttons/ButtonItem.vue";
+
+
 
 
 const props = defineProps({
@@ -99,21 +103,9 @@ setInterval(() => {
                     <input v-model="comment" type="text" class="fs-7 border-0 bg-transparent outline"
                         placeholder="comment post...">
                     <div class="d-flex align-items-center">
-                        <button class="btn btn-sm mt-1">
-                            <span class="material-icons-outlined fs-6">
-                                sentiment_satisfied_alt
-                            </span>
-                        </button>
-                        <button class="btn btn-sm mt-1">
-                            <span class="material-icons-outlined fs-6">
-                                gif_box
-                            </span>
-                        </button>
-                        <button class="btn btn-sm mt-1">
-                            <span class="material-icons-outlined fs-6">
-                                add_a_photo
-                            </span>
-                        </button>
+                        <Button icon="sentiment_satisfied_alt" />
+                        <Button icon="gif_box" />
+                        <Button icon="add_a_photo" />
                     </div>
                 </div>
                 <p class="item m-0 fs-7" @click="toggle" v-if="isFolder">{{ isOpen ? '[-]' : `Comments
@@ -134,41 +126,9 @@ setInterval(() => {
                 </span>
             </button>
             <ul class="dropdown-menu rounded-1 shadow p-0 post" aria-labelledby="dropdownMenuButton1">
-                <li>
-                    <a class="dropdown-item fs-7" href="#">
-                        <div class="d-flex align-items-start">
-                            <span class="material-icons-outlined fs-6 text-secondary me-2">
-                                edit
-                            </span>
-                            <p class="m-0 fw-bold">
-                                Edit
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item fs-7" href="#">
-                        <div class="d-flex align-items-start">
-                            <span class="material-icons-outlined text-secondary fs-6 me-2">
-                                share
-                            </span>
-                            <p class="m-0 fw-bold">
-                                Share
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li><a @click="handlerId" class="dropdown-item fs-7" href="#">
-                        <div class="d-flex align-items-start">
-                            <span class="material-icons-outlined fs-6 text-secondary me-2">
-                                delete_forever
-                            </span>
-                            <p class="m-0 fw-bold">
-                                Remove
-                            </p>
-                        </div>
-                    </a>
-                </li>
+                <ButtonItem icon="edit" info="Edit" />
+                <ButtonItem icon="share" info="Share" />
+                <ButtonItem icon="delete_forever" info="Remove" @click="handlerId"/>
             </ul>
         </div>
     </li>
