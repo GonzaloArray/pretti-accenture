@@ -1,6 +1,6 @@
 <template >
 
-    <aside id="sidebar" class="sidebar" :class="valor === false && 'toggle-sidebar'">
+    <aside id="sidebar" class="sidebar" :class="valor === true && 'toggle-sidebar'">
 
         <ul class="sidebar-nav" id="sidebar-nav">
 

@@ -94,7 +94,7 @@ setInterval(() => {
             <p class="fs-6 mt-0 mb-1">{{ model.comment }}</p>
 
             <div v-if="modalResponse == false">
-                <p class="fw-bold fs-8 m-0" @click="handleResponse">Response</p>
+                <p class="fw-bold fs-8 m-0" @click="handleResponse">Reply</p>
             </div>
             <form v-else :class="{ bold: isFolder }" @submit.prevent="changeType">
 

@@ -4,19 +4,27 @@ import DivisorSection from '../components/DivisorSection.vue'
 import AsideComponent from '../components/Aside/AsideComponent.vue'
 import PremiunComponent from '../components/Premiun/PremiunComponent.vue'
 import MessagePost from '../components/Post/MessagePost.vue';
+import Spinner from '../components/Loader/Spinner.vue';
+
 
 import { ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core';
 
 
 const arrayPost = ref([]);
-console.log(arrayPost.value);
 const valor = ref("")
+const spinner = ref(true)
+
 function messagePost(array) {
 
     arrayPost.value.unshift(array);
 
 }
-
+onMounted(()=>{
+    setTimeout(() => {
+        spinner.value = false;
+    }, 1000);
+})
 function handlerId(msj) {
     console.log(msj)
     valor.value = msj
@@ -46,6 +54,7 @@ function handlerId(msj) {
                 <PremiunComponent />
             </div>
         </div>
+        <Spinner v-if="spinner" />
     </div>
 </template>
 

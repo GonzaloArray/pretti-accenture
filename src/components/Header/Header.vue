@@ -25,7 +25,7 @@ function handlerDarkMode() {
             </RouterLink>
             <button class="border-0" @click="$emit('close')">
                 <span class="material-icons-outlined toggle-sidebar-btn">
-                    {{ show ? "menu" : "close" }}
+                    {{ show ? "close" : "menu" }}
                 </span>
             </button>
         </div>
@@ -34,7 +34,7 @@ function handlerDarkMode() {
 
         <button class="ms-3 border-0 rounded-3 text-light" :class="darkMode ? 'bg-info':'bg-dark'" @click="handlerDarkMode">
             <span class="material-icons-outlined mt-1 px-2 fs-6">
-                {{darkMode ? "nights_stay": "wb_sunny"}}
+                {{darkMode ? "wb_sunny" : "nights_stay"}}
             </span>
         </button>
         <Nav />

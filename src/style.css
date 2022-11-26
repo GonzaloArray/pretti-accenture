@@ -99,7 +99,9 @@ body {
 .color-oscuro h3,
 .color-oscuro h4,
 .color-oscuro h5,
-.color-oscuro h6
+.color-oscuro h6,
+.color-oscuro input[type="text"],
+.color-oscuro input::placeholder
 {
     color: #B0B3B8!important;
 }
