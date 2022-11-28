@@ -6,8 +6,8 @@ const props = defineProps({
 </script>
 <template>
     <div class="col-3">
-        <router-link class="btn bg-negro border btn-sm px-4 shadow p-2" :to="'/'+href">
-            <span class="material-icons-outlined text-dark fs-1 m-0 ">
+        <router-link class="btn bg-negro border-0 border btn-sm px-4 p-2" :to="'/'+href">
+            <span class="material-icons-outlined fs-1 m-0 ">
                 {{icon}}
             </span>
         </router-link>
@@ -19,6 +19,7 @@ const props = defineProps({
     }
     .router-link-active.border{
         border-top: 3px solid #317AC7!important;;
-        transition: .3s ease-in-out;
+        transition: .2s ease-in-out;
+        color: #317AC7!important;
     }
 </style>
