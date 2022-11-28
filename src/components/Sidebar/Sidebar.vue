@@ -4,7 +4,8 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            <ButtomLink icon="space_dashboard" title="Dashboard" href="" />
+            <ButtomLink icon="home" title="Home" href="" />
+            <ButtomLink icon="space_dashboard" title="Dashboard" href="dashboard" />
 
 
             <!-- List  colocar componente-->

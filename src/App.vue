@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from '@vue/runtime-core';
 import { RouterLink, RouterView } from 'vue-router'
+import ButtonFixed from './components/Buttons/ButtonFixed.vue';
 import Header from './components/Header/Header.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue';
 
@@ -11,7 +12,7 @@ function handleDark(msj) {
 	darkMode.value = msj
 	if (msj) {
 		document.body.classList.add("color-oscuro", "bg-oscuro")
-	}else{
+	} else {
 		document.body.classList.remove("color-oscuro", "bg-oscuro")
 	}
 }
@@ -19,7 +20,7 @@ function handleDark(msj) {
 </script>
 <template>
 	<div>
-		<Header :show="showModal" @close="showModal = !showModal" @DarkMode="handleDark"/>
+		<Header :show="showModal" @close="showModal = !showModal" @DarkMode="handleDark" />
 
 		<Sidebar :valor="showModal" />
 
@@ -31,15 +32,23 @@ function handleDark(msj) {
 			<hr>
 			<p class="text-center fs-7 m-0 pb-3">© Designer <a href="#">J. Gonzalo Arrayaran</a> Project Accenture.</p>
 		</footer>
+		<nav class="position-fixed bottom-0 text-center end-0 start-0 bg-white shadow row">
+			<ButtonFixed href="" icon="home" />
+			<ButtonFixed href="dashboard" icon="dashboard" />
+			<ButtonFixed href="login" icon="login" />
+			<ButtonFixed href="profile" icon="account_circle" />
+
+		</nav>
 	</div>
 </template>
 
 <style scoped>
-	#main {
-		margin-top: 60px;
-		padding: 20px 10px;
-		transition: all 0.3s;
-	}
+#main {
+	margin-top: 60px;
+	padding: 20px 10px;
+	transition: all 0.3s;
+}
+
 @media (min-width: 1200px) {
 
 	#main {
