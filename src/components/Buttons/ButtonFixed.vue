@@ -6,7 +6,7 @@ const props = defineProps({
 </script>
 <template>
     <div class="col-3">
-        <router-link class="btn bg-negro border btn-sm shadow p-2" :to="'/'+href">
+        <router-link class="btn bg-negro border btn-sm px-4 shadow p-2" :to="'/'+href">
             <span class="material-icons-outlined text-dark fs-1 m-0 ">
                 {{icon}}
             </span>
