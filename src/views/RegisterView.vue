@@ -4,21 +4,21 @@ import ButtonMedia from '../components/Form/Login/ButtonMedia.vue';
 
 </script>
 <template>
-    <section class="d-flex flex-column justify-content-md-center align-items-center pt-2">
-        <div class="rounded-circle mb-5">
-            <img class="rounded-circle border border-1 border-dark p-1" src="../assets/logo.png" alt="Logo">
+    <section class="d-flex flex-column justify-content-md-center align-items-center pt-2 mx-2 px-4">
+        <div class="rounded-circle mb-5 width-img rounded-circle border border-1 border-dark d-flex justify-content-center align-items-center">
+            <img class="" src="../assets/logo.png" alt="Logo">
         </div>
-        <form class="px-2 d-md-flex flex-md-column">
-            <h2 class="fs-7 text-white">Login to your Account</h2>
-            <input class="rounded-pill py-2 px-3 fs-per mb-3" type="text" placeholder="Email">
-            <input class="rounded-pill py-2 px-3 fs-per mb-4" type="text" placeholder="Password">
-            <input class="rounded-pill py-2 px-3 fs-per mb-4" type="text" placeholder="Repit Password">
+        <form class="d-md-flex flex-md-column mt-4">
+            <h2 class="fs-7 text-white">Register your Account</h2>
+            <input class="rounded-pill py-2 fs-per mb-3" type="text" placeholder="Email">
+            <input class="rounded-pill py-2 fs-per mb-4" type="text" placeholder="Password">
+            <input class="rounded-pill py-2 fs-per mb-4" type="text" placeholder="Repit password">
             <ButtonSubmit button="Sign up" />
         </form>
 
-        <p class="fs-7 text-white mt-4">-Or sign up with-</p>
+        <p class="fs-7 text-white mt-4 font fw-ligh">-Or sign up with-</p>
 
-        <section class="d-flex justify-content-between mt-5 mb-2">
+        <section class="d-flex justify-content-between mt-5">
             <a href="" class="bg-social rounded-4 shadow me-2 d-flex justify-content-center">
                 <img class="width" src="../assets/social/twitter.svg" alt="Twitter">
             </a>
@@ -29,9 +29,14 @@ import ButtonMedia from '../components/Form/Login/ButtonMedia.vue';
                 <img class="width_google" src="../assets/social/google.svg" alt="Google">
             </a>
         </section>
+
     </section>
 </template>
 <style scoped>
+
+input::placeholder{
+    padding: 0 1rem;
+}
 
 input {
     background-color: #FFFFFF60;
@@ -69,7 +74,14 @@ input:hover {
 .width_facebook{
     width: 1.8rem;
 }
+.width-img{
+    width: 120px;
+    height: 120px;
+}
 .width_google{
     width: 2.7rem;
+}
+.font{
+    font-style: italic;
 }
 </style>

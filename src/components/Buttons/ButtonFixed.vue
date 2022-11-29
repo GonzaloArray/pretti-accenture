@@ -19,6 +19,7 @@ const props = defineProps({
     }
     .router-link-active.border{
         border-top: 3px solid #317AC7!important;;
+        border-radius: 0!important;
         transition: .2s ease-in-out;
         color: #317AC7!important;
     }
