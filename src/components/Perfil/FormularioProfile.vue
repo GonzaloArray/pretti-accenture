@@ -4,7 +4,7 @@
 
 <template>
     <h2>
-        
+        Hola mundo en formulario
     </h2>
 </template>
 
