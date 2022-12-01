@@ -9,17 +9,17 @@
 </template>
 <style scoped>
 .bg-button{
-    background-color: #FCF9BF!important;
-    color: #656464;
+    background-color: #317AC7!important;
+    color: #ffffff;
     border-radius: .9rem;
     transition: .3s;
     font-size: 17px;
     padding: .6rem 0;
 }
 .bg-button:hover{
-    background-color: #e5e2b7!important;
+    background-color: #317AC7!important;
 }
 .shawdon{
-    box-shadow:inset 4px 4px 5px #fff987;
+    box-shadow:inset 4px 4px 5px #0e5eb5;
 }
 </style>

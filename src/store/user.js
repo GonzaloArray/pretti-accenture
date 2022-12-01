@@ -3,12 +3,23 @@ import { computed, onMounted, ref } from 'vue'
 
 
 export const useUserStore = defineStore('user', () => {
-    const usuario = ref(null)
+    // State
+    const user = ref({
+        email: '',
+        password: '',
+        repassword: '',
+        errorMessage: ''
+    })
+    const usuario = ref(null);
+
+    const userBoolean = ref(false);
     
+    // actions
     function detectarUsuario({ commit }, usuario) {
         commit('user', usuario)
     }
 
+    // getters
     const existeUsuario = computed(() => {
         if(usuario.value === null){
             return false;
@@ -17,5 +28,5 @@ export const useUserStore = defineStore('user', () => {
           }
     })
 
-    return {usuario, existeUsuario}
+    return {usuario, user, existeUsuario}
 })

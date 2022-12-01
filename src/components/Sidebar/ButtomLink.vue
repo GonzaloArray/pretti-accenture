@@ -8,13 +8,14 @@
         </RouterLink>
     </li>
 </template>
-<script>
+<script setup>
 import { RouterLink } from 'vue-router'
+const props = defineProps({
+    icon: String,
+    title: String,
+    href: String
+})
 
-export default {
-    props: ["icon", "title", "href"],
-
-}
 </script>
 <style scoped>
 .sidebar-nav .nav-item {
@@ -27,7 +28,7 @@ export default {
     align-items: center;
     font-size: 15px;
     font-weight: 600;
-    color: #4154f1;
+    color: #7CF6FD;
     transition: 0.3;
     background: #f6f9ff;
     padding: 10px 15px;
@@ -45,17 +46,17 @@ export default {
     background: #fff;
 }
 .sidebar-nav .nav-link.collapsed:focus{
-    color: #4154f1;
+    color: #7CF6FD;
     background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover {
-    color: #4154f1;
+    color: #7CF6FD;
     background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover span {
-    color: #4154f1;
+    color: #7CF6FD;
 }
 
 </style>

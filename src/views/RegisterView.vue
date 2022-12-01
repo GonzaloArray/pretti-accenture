@@ -1,31 +1,33 @@
 <script setup>
 import ButtonSubmit from '../components/Form/ButtonSubmit.vue';
 import ButtonMedia from '../components/Form/Login/ButtonMedia.vue';
+import { useUserStore } from '../store/user';
+import { register } from '../utils/authFunction';
+
+const store = useUserStore();
 
 </script>
 <template>
-    <section class="d-flex flex-column justify-content-md-center align-items-center pt-2 mx-2 px-4">
-        <div class="rounded-circle mb-5 width-img rounded-circle border border-1 border-dark d-flex justify-content-center align-items-center">
-            <img class="" src="../assets/logo.png" alt="Logo">
-        </div>
-        <form class="d-md-flex flex-md-column mt-4">
-            <h2 class="fs-7 text-white">Register your Account</h2>
-            <input class="rounded-pill py-2 fs-per mb-3" type="text" placeholder="Email">
-            <input class="rounded-pill py-2 fs-per mb-4" type="text" placeholder="Password">
-            <input class="rounded-pill py-2 fs-per mb-4" type="text" placeholder="Repit password">
-            <ButtonSubmit button="Sign up" />
+    <section class="d-flex flex-column justify-content-md-center align-items-center pt-2">
+
+        <form class="d-flex flex-column w-100 px-4 mt-5" @submit.prevent="register(store.user.email, store.user.password, store.user.repassword)">
+            <h2 class="fs-7 text-white">Register to your Account</h2>
+            <input class="rounded-pill py-2 ps-3 fs-per mb-3" type="text" placeholder="Email" v-model="store.user.email">
+            <input class="rounded-pill py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.password">
+            <input class="rounded-pill py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.repassword">
+            <ButtonSubmit button="Sign up"/>
         </form>
 
-        <p class="fs-7 text-white mt-4 font fw-ligh">-Or sign up with-</p>
+        <p class="fs-7 text-white mt-4 font fw-light">-Or sign up with-</p>
 
         <section class="d-flex justify-content-between mt-5">
-            <a href="" class="bg-social rounded-4 shadow me-2 d-flex justify-content-center">
+            <a href="" class="bg-social rounded-4 shadow d-flex justify-content-center">
                 <img class="width" src="../assets/social/twitter.svg" alt="Twitter">
             </a>
-            <a href="" class="bg-social rounded-4 shadow me-2 d-flex justify-content-center">
+            <a href="" class="bg-social rounded-4 shadow mx-4 d-flex justify-content-center">
                 <img class="width_facebook" src="../assets/social/facebook.svg" alt="Facebook">
             </a>
-            <a href="" class="bg-social rounded-4 shadow me-2 d-flex justify-content-center">
+            <a href="" class="bg-social rounded-4 shadow d-flex justify-content-center">
                 <img class="width_google" src="../assets/social/google.svg" alt="Google">
             </a>
         </section>
@@ -34,24 +36,11 @@ import ButtonMedia from '../components/Form/Login/ButtonMedia.vue';
 </template>
 <style scoped>
 
-input::placeholder{
-    padding: 0 1rem;
-}
-
 input {
     background-color: #FFFFFF60;
     outline: none;
     border: 1px solid #FFFFFF70;
 
-    width: 100%;
-
-}
-
-@media (min-width: 768px) {
-
-    input {
-        width: 350px;
-    }
 }
 
 input:hover {
@@ -64,24 +53,27 @@ input:hover {
 }
 
 .bg-social {
-    background-color: #f6f08a !important;
-    width: 100px;
-    height: 80px;
+    background-color: #317AC7 !important;
+    width: 85px;
+    height: 70px;
 }
 .width{
-    width: 3rem;
+    width: 2rem;
 }
 .width_facebook{
-    width: 1.8rem;
+    width: 1.2rem;
 }
-.width-img{
-    width: 120px;
-    height: 120px;
-}
+
 .width_google{
-    width: 2.7rem;
+    width: 1.8rem;
 }
 .font{
     font-style: italic;
+}
+.text-principal{
+    color: #FCF9BF;
+}
+.width-img{
+    width: 5rem;
 }
 </style>

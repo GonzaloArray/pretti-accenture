@@ -1,37 +1,51 @@
+<script setup>
+import { getAuth, signOut } from '@firebase/auth';
+import LinksNav from './LinksNav.vue';
+
+
+function signout() {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+        alert('¡Sesión cerrada! Inicia sesión.');
+    }).catch((error) => {
+
+    });
+}
+</script>
+
 <template>
     <nav class="header-nav">
-            <ul>
-                <li class="nav-item dropdown pe-3">
+        <ul>
+            <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="../../../assets/perfil.png" alt="Profile" class="rounded-circle logo">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Heinsenberg Dev</span>
-                    </a>
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <img src="../../../assets/perfil.png" alt="Profile" class="rounded-circle logo">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">Heinsenberg Dev</span>
+                </a>
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            <h6>Heinsenberg Dev</h6>
-                            <span>Web Designer</span>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                        <h6>Heinsenberg Dev</h6>
+                        <span>Web Designer</span>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
 
-                        <LinksNav title="My Profile" icon="person" />
-                        <LinksNav title="Account Settings" icon="settings" />
-                        <LinksNav title="Need Help?" icon="help_outline" />
-                        <LinksNav title="Sign Out" icon="logout" />
+                    <LinksNav title="My Profile" icon="person" />
+                    <LinksNav title="Account Settings" icon="settings" />
+                    <LinksNav title="Need Help?" icon="help_outline" />
+                    <LinksNav title="Sign Out" icon="logout" @click="signout"/>
+                    <!-- <button class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#login"
+                        @click="signout">
+                        Log out
+                    </button> -->
 
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 </template>
-
-<script setup>
-    import LinksNav from './LinksNav.vue';
-
-</script>
 
 <style scoped>
 .dropdown-menu {
@@ -46,9 +60,11 @@
     border: 0;
     box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
 }
-.logo{
+
+.logo {
     width: 2rem;
 }
+
 .dropdown-menu .dropdown-header,
 .dropdown-menu .dropdown-footer {
     text-align: center;

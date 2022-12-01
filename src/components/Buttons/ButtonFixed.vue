@@ -1,5 +1,5 @@
 <script setup>
-import { useUserStore } from "../../store/store"
+import { useUserStore } from "../../store/user"
 
 const store = useUserStore();
 
@@ -12,7 +12,7 @@ const props = defineProps({
 <template>
     <div class="col-2">
         <router-link class="btn bg-negro border-0 border btn-sm py-2 px-2" :to="'/'+href">
-            {{title}}
+
             <span class="notification-link material-icons-outlined fs-1 m-0 ">
                 {{icon}}
             </span>
