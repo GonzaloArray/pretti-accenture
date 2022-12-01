@@ -1,13 +1,19 @@
 <script setup>
+import { useUserStore } from "../../store/store"
+
+const store = useUserStore();
+
 const props = defineProps({
+    title: String,
     icon: String,
     href: String,
 })
 </script>
 <template>
-    <div class="col-3">
-        <router-link class="btn bg-negro border-0 border btn-sm px-4 p-2" :to="'/'+href">
-            <span class="material-icons-outlined fs-1 m-0 ">
+    <div class="col-2">
+        <router-link class="btn bg-negro border-0 border btn-sm py-2 px-2" :to="'/'+href">
+            {{title}}
+            <span class="notification-link material-icons-outlined fs-1 m-0 ">
                 {{icon}}
             </span>
         </router-link>

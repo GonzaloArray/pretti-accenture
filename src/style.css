@@ -58,6 +58,10 @@ h6 {
     }
 }
 
+.bg-oscuro .menu{
+    color: white!important;
+}
+
 /* Dark mode config */
 .bg-oscuro header
 {
@@ -76,7 +80,8 @@ h6 {
 .bg-oscuro .post,
 .bg-oscuro section,
 .bg-oscuro aside,
-.bg-oscuro
+.bg-oscuro,
+.bg-oscuro .notification
 {
     background-color: #313030!important;
 }
@@ -89,7 +94,8 @@ body {
     background-color: #242526!important;
 }
 
-.bg-oscuro .sendPost{
+.bg-oscuro .sendPost,
+.bg-oscuro .notification-link{
     color: white!important;
 }
 

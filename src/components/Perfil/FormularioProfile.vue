@@ -3,8 +3,9 @@
 </script>
 
 <template>
-    <h2>
+    <h2 class="fon ">
         Hola mundo en formulario
+
     </h2>
 </template>
 

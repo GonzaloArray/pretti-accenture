@@ -17,24 +17,24 @@ function handlerDarkMode() {
 
 </script>
 <template>
-    <header id="header" class="header fixed-top d-flex align-items-center">
+    <header id="header" class="header fixed-top d-flex align-items-center justify-content-between">
 
-        <div class="d-flex align-items-center justify-content-between">
-            <RouterLink class="logo d-flex align-items-center bg-transparent" to="">
-                <img src="../../assets/logo.png" alt="Pretti in the world">
-            </RouterLink>
-            <button class="border-0" @click="$emit('close')">
-                <span class="material-icons-outlined toggle-sidebar-btn">
-                    {{ show ? "close" : "menu" }}
-                </span>
-            </button>
-        </div>
+        <RouterLink class="logo d-flex align-items-center bg-transparent" to="">
+            <img src="../../assets/logo.png" alt="Pretti in the world">
+        </RouterLink>
+
+        <button class="border-0 p-0 m-0 rounded-pill btn btn-sm lh-1" @click="$emit('close')">
+            <span class="material-icons-outlined toggle-sidebar-btn menu m-0 p-0">
+                {{ show ? "close" : "menu" }}
+            </span>
+        </button>
 
         <Search />
 
-        <button class="ms-3 border-0 rounded-3 text-light" :class="darkMode ? 'bg-info':'bg-dark'" @click="handlerDarkMode">
+        <button class="border-0 rounded-pill text-light" :class="darkMode ? 'bg-info' : 'bg-dark'"
+            @click="handlerDarkMode">
             <span class="material-icons-outlined mt-1 px-2 fs-6">
-                {{darkMode ? "wb_sunny" : "nights_stay"}}
+                {{ darkMode ? "wb_sunny" : "nights_stay" }}
             </span>
         </button>
         <Nav />
@@ -45,6 +45,7 @@ function handlerDarkMode() {
 /* Heaader */
 .logo {
     line-height: 1;
+    width: 2rem;
 }
 
 @media (min-width: 1200px) {
@@ -72,9 +73,7 @@ function handlerDarkMode() {
     height: 50px;
     box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
     background-color: #fff;
-    padding-left: 20px;
-    /* Toggle Sidebar Button */
-    /* Search Bar */
+    padding-left: 10px;
 }
 
 .header .toggle-sidebar-btn {
@@ -83,9 +82,11 @@ function handlerDarkMode() {
     cursor: pointer;
     color: #012970;
 }
-.bg-transparent{
-    background-color: transparent!important;;
+
+.bg-transparent {
+    background-color: transparent !important;
 }
+
 button {
     background-color: transparent;
 }

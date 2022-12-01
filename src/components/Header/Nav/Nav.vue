@@ -1,58 +1,10 @@
 <template>
-    <nav class="header-nav ms-auto">
-            <ul class="d-flex align-items-center">
-
-                <li class="nav-item dropdown">
-
-                    <Notification icon="notifications" cant="2" color="bg-primary" />
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications ">
-                        <ViewAll msj="Notification"/>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <MessageNotification />
-
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">Show all notifications</a>
-                        </li>
-
-                    </ul>
-
-                </li>
-                <!-- Finaliza notificación -->
-
-                <li class="nav-item dropdown">
-
-                    <Notification icon="speaker_notes" cant="3" color="bg-success"/>
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-                        <ViewAll msj="Message"/>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <MessageUser />
-
-
-                        <li class="dropdown-footer">
-                            <a href="#">Show all messages</a>
-                        </li>
-
-                    </ul>
-
-                </li>
-
+    <nav class="header-nav">
+            <ul>
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="../../../assets/perfil.png" alt="Profile" class="rounded-circle">
+                        <img src="../../../assets/perfil.png" alt="Profile" class="rounded-circle logo">
                         <span class="d-none d-md-block dropdown-toggle ps-2">Heinsenberg Dev</span>
                     </a>
 
@@ -76,22 +28,9 @@
         </nav>
 </template>
 
-<script>
-    import Notification from './Notification.vue';
-    import ViewAll from './ViewAll.vue';
+<script setup>
     import LinksNav from './LinksNav.vue';
-    import MessageNotification from './MessageNotification.vue';
-    import MessageUser from './MessageUser.vue';
 
-    export default {
-        components: {
-            Notification,
-            ViewAll,
-            LinksNav,
-            MessageNotification,
-            MessageUser
-        }
-    }
 </script>
 
 <style scoped>
@@ -107,7 +46,9 @@
     border: 0;
     box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
 }
-
+.logo{
+    width: 2rem;
+}
 .dropdown-menu .dropdown-header,
 .dropdown-menu .dropdown-footer {
     text-align: center;
