@@ -20,17 +20,7 @@ const store = useUserStore();
 
         <p class="fs-7 text-white mt-4 font fw-light">-Or sign up with-</p>
 
-        <section class="d-flex justify-content-between my-5">
-            <a href="" class="bg-social rounded-4 shadow d-flex justify-content-center">
-                <img class="width" src="../assets/social/twitter.svg" alt="Twitter">
-            </a>
-            <a href="" class="bg-social rounded-4 shadow mx-4 d-flex justify-content-center">
-                <img class="width_facebook" src="../assets/social/facebook.svg" alt="Facebook">
-            </a>
-            <a href="" class="bg-social rounded-4 shadow d-flex justify-content-center">
-                <img class="width_google" src="../assets/social/google.svg" alt="Google">
-            </a>
-        </section>
+        
 
     </section>
 </template>

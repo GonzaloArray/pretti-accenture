@@ -19,19 +19,21 @@ function handlerDarkMode() {
 <template>
     <header id="header" class="header fixed-top d-flex align-items-center justify-content-between">
 
-        <RouterLink class="logo d-flex align-items-center bg-transparent" to="">
-            <img src="../../assets/logo.png" alt="Pretti in the world">
-        </RouterLink>
-
         <button class="border-0 p-0 m-0 rounded-pill btn btn-sm lh-1" @click="$emit('close')">
             <span class="material-icons-outlined toggle-sidebar-btn menu m-0 p-0">
                 {{ show ? "close" : "menu" }}
             </span>
         </button>
 
+        <RouterLink class="logo d-flex align-items-center bg-transparent" to="">
+            <img src="../../assets/logo.png" alt="Pretti in the world">
+        </RouterLink>
+
+        
+
         <Search />
 
-        <button class="border-0 rounded-pill text-light" :class="darkMode ? 'bg-info' : 'bg-dark'"
+        <button class="position-absolute start-0 ms-5 border-0 rounded-pill text-light" :class="darkMode ? 'bg-info' : 'bg-dark'"
             @click="handlerDarkMode">
             <span class="material-icons-outlined mt-1 px-2 fs-6">
                 {{ darkMode ? "wb_sunny" : "nights_stay" }}

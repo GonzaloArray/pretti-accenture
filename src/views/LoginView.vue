@@ -2,7 +2,7 @@
 import ButtonSubmit from '../components/Form/ButtonSubmit.vue';
 import ButtonMedia from '../components/Form/Login/ButtonMedia.vue';
 import { useUserStore } from '../store/user';
-import { login } from '../utils/authFunction';
+import { login, loginFacebook, loginGitHub, loginGoogle } from '../utils/authFunction';
 
 const store = useUserStore();
 
@@ -20,15 +20,15 @@ const store = useUserStore();
         <p class="fs-7 text-white mt-4 font fw-light">-Or sign in with-</p>
 
         <section class="d-flex justify-content-between my-5">
-            <a href="" class="bg-social rounded-4 shadow d-flex justify-content-center">
-                <img class="width" src="../assets/social/twitter.svg" alt="Twitter">
-            </a>
-            <a href="" class="bg-social rounded-4 shadow mx-4 d-flex justify-content-center">
-                <img class="width_facebook" src="../assets/social/facebook.svg" alt="Facebook">
-            </a>
-            <a href="" class="bg-social rounded-4 shadow d-flex justify-content-center">
-                <img class="width_google" src="../assets/social/google.svg" alt="Google">
-            </a>
+            <button type="button" @click.prevent="loginGitHub" class="rounded-4 btn btn-sm bg-social shadow">
+                <img class="width" src="../assets/social/github.svg" alt="Twitter" />
+            </button>
+            <button type="button" @click="loginFacebook" class="mx-4 rounded-4 btn btn-sm bg-social shadow">
+                <img class="width" src="../assets/social/facebook.svg" alt="Facebook">
+            </button>
+            <button type="button" @click.prevent="loginGoogle" class=" rounded-4 btn btn-sm bg-social shadow">
+                <img class="width" src="../assets/social/google.svg" alt="Google">
+            </button>
         </section>
         <p class="fs-7 text-white my-4">Dont’t have an account? <a class="text-principal" href="">Sign up</a></p>
 

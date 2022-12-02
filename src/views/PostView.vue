@@ -25,7 +25,7 @@ import ButtonInteraction from '../components/Post/ButtonInteraction.vue';
           </div>
         </div>
       </div>
-      <textarea class="w-100 border-0 textarea" placeholder="What's on your mind?"></textarea>
+      <textarea class="w-100 border-0 textarea post text-secondary" placeholder="What's on your mind?"></textarea>
       <div class="row d-flex justify-content-center position-absolute bottom-0 end-0 start-0">
         <ButtonInteraction icon="filter"/>
         <ButtonInteraction icon="new_label"/>
