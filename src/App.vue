@@ -42,7 +42,7 @@ function handleDark(msj) {
 			class="notification d-flex justify-content-center position-fixed bottom-0 text-center end-0 start-0 bg-white shadow row">
 			<ButtonFixed href="" icon="home" />
 			<ButtonFixed href="dashboard" icon="dashboard" :class="store.existeUsuario ? '' : 'opacity'"/>
-			<ButtonFixed href="login" icon="add" :class="store.existeUsuario ? '' : 'opacity'" />
+			<ButtonFixed href="post" icon="add" :class="store.existeUsuario ? '' : 'opacity'" />
 			<ButtonFixed href="login" icon="notifications" :class="store.existeUsuario ? '' : 'opacity'"/>
 			<ButtonFixed href="profile" icon="account_circle" :class="store.existeUsuario ? '' : 'opacity'"/>
 
