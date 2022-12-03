@@ -11,6 +11,7 @@ const user = ref(
         email: "heinsenbergdev@gmail.com",
     }
 );
+
 function handleEdit(msj) {
     if(msj.id == "1"){
         user.value.userName = msj.change1
@@ -25,7 +26,7 @@ function handleEdit(msj) {
 
 </script>
 <template>
-    <Perfil :user="user" />
+    <Perfil/>
     <Information
         title="Personal information: "
         icon1="person"

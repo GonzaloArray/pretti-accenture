@@ -11,9 +11,10 @@ export const useUserStore = defineStore('user', () => {
         errorMessage: ''
     })
     const usuario = ref(null);
-
-    const userBoolean = ref(false);
     
+    const addUsuario = (user) => {
+        usuario.value = user;
+    }
     // actions
     function detectarUsuario({ commit }, usuario) {
         commit('user', usuario)
@@ -28,5 +29,5 @@ export const useUserStore = defineStore('user', () => {
           }
     })
 
-    return {usuario, user, existeUsuario}
+    return {usuario, user, existeUsuario, addUsuario}
 })

@@ -20,7 +20,6 @@ function register(email, password) {
         .then((userCredential) => {
             const user = userCredential.user;
 
-            store.boolean = true;
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -47,7 +46,8 @@ function loginGoogle() {
 
     signInWithPopup(auth, googleProvider)
     .then(result => {
-        console.log(result);
+        store.addUsuario(result.user)
+
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
 
@@ -61,6 +61,7 @@ function loginFacebook() {
     signInWithPopup(auth, facebookProvider)
     .then(result => {
         alert("Exito")
+        store.addUsuario(result.user)
     })
     .catch(error => console.log(error));
 }

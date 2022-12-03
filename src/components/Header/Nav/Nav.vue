@@ -1,5 +1,6 @@
 <script setup>
 import { getAuth, signOut } from '@firebase/auth';
+import { useUserStore } from '../../../store/user';
 import LinksNav from './LinksNav.vue';
 
 
@@ -11,6 +12,10 @@ function signout() {
 
     });
 }
+
+const store = useUserStore();
+
+
 </script>
 
 <template>
@@ -19,14 +24,15 @@ function signout() {
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="../../../assets/perfil.png" alt="Profile" class="rounded-circle logo">
+                    <img v-if="store.existeUsuario" :src="store.usuario.photoURL" alt="Profile" class="rounded-circle logo">
+                    <img v-else src="../../../assets/user.svg" alt="Profile user">
                     <span class="d-none d-md-block dropdown-toggle ps-2">Heinsenberg Dev</span>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Heinsenberg Dev</h6>
-                        <span>Web Designer</span>
+                        <h6>{{store.existeUsuario ? store.usuario.displayName: ' ------- --- ------'}}</h6>
+                        <span>{{store.existeUsuario ? store.usuario.email: ' ------- --- ------'}}</span>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -35,11 +41,7 @@ function signout() {
                     <LinksNav title="My Profile" icon="person" />
                     <LinksNav title="Account Settings" icon="settings" />
                     <LinksNav title="Need Help?" icon="help_outline" />
-                    <LinksNav title="Sign Out" icon="logout" @click="signout"/>
-                    <!-- <button class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#login"
-                        @click="signout">
-                        Log out
-                    </button> -->
+                    <LinksNav v-if="store.existeUsuario" title="Sign Out" icon="logout" @click="signout"/>
 
                 </ul>
             </li>

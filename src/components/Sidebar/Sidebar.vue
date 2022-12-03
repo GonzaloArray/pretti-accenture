@@ -55,35 +55,35 @@
 
             <ButtomLink icon="person" title="Profile" href="profile" />
             <ButtomLink icon="forward_to_inbox" title="Contact" href="contact" />
-            <ButtomLink icon="app_registration" title="Register" href="register" />
-            <ButtomLink icon="login" title="Login" href="login" />
+
+            <div v-if="!store.existeUsuario">
+                <ButtomLink icon="app_registration" title="Register" href="register" />
+                <ButtomLink icon="login" title="Login" href="login" />
+
+            </div>
+
             <ButtomLink icon="numbers" title="About us" href="about" />
 
         </ul>
 
     </aside>
 </template>
-<script>
+<script setup>
+
+import { ref } from 'vue-demi';
+import { useUserStore } from '../../store/user';
 import ButtomLink from './ButtomLink.vue'
 import ButtomToggle from './ButtomToggle.vue';
 import SubLink from './SubLink.vue';
 
+const arrow = ref(true);
 
-export default {
+const store = useUserStore();
 
-    data() {
-        return {
-            arrow: true,
-        }
-    },
-    components: {
-        ButtomLink,
-        SubLink,
-        ButtomToggle,
-    },
-    props: ["valor"],
+const props = defineProps({
+    valor: Boolean
+})
 
-}
 </script>
 <style scoped>
 /* # Sidebar */

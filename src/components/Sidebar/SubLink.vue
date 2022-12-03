@@ -8,10 +8,12 @@
         </a>
     </li>
 </template>
-<script>
-export default {
-    props: ["icon", "title"]
-}
+<script setup>
+
+const props = defineProps({
+    icon: String,
+    title: String
+})
 </script>
 <style scoped>
 

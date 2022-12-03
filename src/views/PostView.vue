@@ -1,6 +1,8 @@
 <script setup>
 import ButtonInteraction from '../components/Post/ButtonInteraction.vue';
+import { useUserStore } from '../store/user';
 
+const store = useUserStore();
   
 </script>
 
@@ -14,10 +16,10 @@ import ButtonInteraction from '../components/Post/ButtonInteraction.vue';
     <hr>
     <div>
       <div class="d-flex align-items-center mb-3">
-        <img src="../assets/perfil.png" class="me-2 width border border-1 border-secondary rounded-circle"
+        <img :src="store.existeUsuario ? store.usuario.photoURL : '../assets/logo.png'" class="me-2 width border border-1 border-secondary rounded-circle"
           alt="Perfil de mindhub">
         <div>
-          <h2 class="fs-6 fw-bold mb-1">@HeinsenberDev</h2>
+          <h2 class="fs-6 fw-bold mb-1">{{(store.existeUsuario ? store.usuario.displayName: "User14312341234")}}</h2>
           <div>
             <select class="fs-7 border p-1 fw-bold" name="" id="">
               <option value="asdf"> Only me </option>
