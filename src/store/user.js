@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 
 export const useUserStore = defineStore('user', () => {
@@ -10,24 +10,21 @@ export const useUserStore = defineStore('user', () => {
         repassword: '',
         errorMessage: ''
     })
+
     const usuario = ref(null);
-    
+
     const addUsuario = (user) => {
         usuario.value = user;
-    }
-    // actions
-    function detectarUsuario({ commit }, usuario) {
-        commit('user', usuario)
     }
 
     // getters
     const existeUsuario = computed(() => {
-        if(usuario.value === null){
+        if (usuario.value === null) {
             return false;
-          }else{
+        } else {
             return true;
-          }
+        }
     })
 
-    return {usuario, user, existeUsuario, addUsuario}
+    return { usuario, user, existeUsuario, addUsuario }
 })

@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 
 import { useUserStore } from "../store/user";
+import router from "../router";
 
 const store = useUserStore();
 
@@ -77,16 +78,12 @@ function loginGitHub(){
 }
 
 onAuthStateChanged(auth, (user) => {
-    if (user) {
-        const usuarioActivo = {
-            email: user.email,
-            uid: user.uid
-        }
-        store.usuario = usuarioActivo
-    } else {
-        store.usuario = user;
-    }
+    store.usuario = user;
+    router.push('/dashboard');
+
 });
+
+
 
 export {
     register,

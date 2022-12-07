@@ -3,7 +3,9 @@ import { onMounted, ref } from '@vue/runtime-core';
 import { RouterLink, RouterView } from 'vue-router'
 
 import ButtonFixed from './components/Buttons/ButtonFixed.vue';
+import Database from './components/Database.vue';
 import Header from './components/Header/Header.vue'
+import ChatVue from './components/PrettyChat/Chat.vue';
 import Sidebar from './components/Sidebar/Sidebar.vue';
 import { useUserStore } from './store/user';
 
@@ -25,12 +27,12 @@ function handleDark(msj) {
 </script>
 <template>
 	<div>
-
 		<Header :show="showModal" @close="showModal = !showModal" @DarkMode="handleDark" />
-
+		
 		<Sidebar :valor="showModal" />
-
+		
 		<main id="main" class="contenedor mx-auto" :class="showModal && 'toggle-sidebar'">
+			<ChatVue />
 			<RouterView />
 
 		</main>
@@ -43,7 +45,7 @@ function handleDark(msj) {
 			<ButtonFixed href="" icon="home" />
 			<ButtonFixed href="dashboard" icon="dashboard" :class="store.existeUsuario ? '' : 'opacity'"/>
 			<ButtonFixed href="post" icon="add" :class="store.existeUsuario ? '' : 'opacity'" />
-			<ButtonFixed href="login" icon="notifications" :class="store.existeUsuario ? '' : 'opacity'"/>
+			<ButtonFixed href="notification" icon="notifications" :class="store.existeUsuario ? '' : 'opacity'"/>
 			<ButtonFixed href="profile" icon="account_circle" :class="store.existeUsuario ? '' : 'opacity'"/>
 
 		</nav>

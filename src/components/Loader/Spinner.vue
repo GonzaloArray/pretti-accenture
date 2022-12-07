@@ -22,8 +22,8 @@
 .loader-wrapper {
     width: 148px;
     height: 100px;
-    position: absolute;
-    margin: -50px 0 0 -74px;
+    position: relative;
+    margin: 30px 0 0 -74px;
     left: 50%;
     top: 60%;
 }
@@ -84,7 +84,7 @@
     display: block;
     width: 15px;
     height: 15px;
-    background: #000;
+    background: #034466;
     border-radius: 50%;
 }
 

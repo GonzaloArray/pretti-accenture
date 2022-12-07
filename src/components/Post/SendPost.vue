@@ -1,44 +1,22 @@
 <script setup>
-import { ref } from "@vue/reactivity"
-import { fecha } from "../../handler/fecha";
+import { useSendPost } from "../../store/sendPost";
 
-const valor = ref("")
-const arrayPosts = ref(null)
-
-
-// emit
-const emits = defineEmits(["message"])
-
-// Funcion
-function handlerPost() {
-
-    if (valor.value !== '') {
-        arrayPosts.value = {
-            comment: valor.value,
-            id: crypto.randomUUID(),
-            date: fecha(),
-            children: []
-        }
-        emits("message", arrayPosts.value)
-
-        valor.value = "";
-    }
-}
-
+const send = useSendPost()
 
 </script>
 
 <template>
     <section class="col-12 my-3 my-md-0">
         <section class="py-4 bg-light rounded-1 shadow position-relative">
-            <form @submit.prevent="handlerPost" class="py-2 d-flex align-items-center justify-content-between px-3">
+            <form @submit.prevent="send.handlePost()" class="py-2 d-flex align-items-center justify-content-between px-3">
                 <section class="col-9 col-md-10">
                     <h2 class="fs-7 position-absolute top-0 mt-3 fw-bold">What are you thinking today?</h2>
                     <div class="d-flex justify-content-between border border-1 rounded-2 ">
-                        <input type="text" v-model="valor" class="border border-0 bg-transparent form-control">
+                        <input type="text" v-model="send.comment" placeholder="message..." class="fs-7 border border-0 bg-transparent form-control">
+                     
                         <button class="form__send p-0 m-0">
                             <span class="material-icons-outlined sendPost fs-6 opacity-50 mt-1 px-2">
-                                {{valor.length > 0 ? "send" : "feedback"}}
+                                {{send.comment.length > 0 ? "send" : "feedback"}}
                             </span>
                         </button>
                     </div>

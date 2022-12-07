@@ -1,3 +1,8 @@
+<script setup>
+import { RouterLink } from 'vue-router';
+
+    
+</script>
 <template>
     <section class="bg-light rounded-1 shadow position-relative">
         <div class="py-3 bg-primario">
@@ -9,7 +14,7 @@
         </div>
         <p class="container">Your personal Pretti frontpage. Come here to check in with favorite communities.</p>
         <div class="d-flex py-2 border-top container">
-            <button class="btn btn-sm btn-primary w-100 fw-bold">Create Post</button>
+            <RouterLink class="btn btn-sm btn-primary w-100 fw-bold" to="/dashboard">Create Post</RouterLink>
         </div>
     </section>
 </template>

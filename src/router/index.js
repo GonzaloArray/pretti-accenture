@@ -54,6 +54,12 @@ const router = createRouter({
       component: () => import('../views/PostView.vue'),
       meta:{reqiureAuth: true}
     },
+    {
+      path: '/notification',
+      name: 'notification',
+      component: () => import('../views/NotificationView.vue'),
+      meta:{reqiureAuth: true}
+    },
   ]
 })
 
