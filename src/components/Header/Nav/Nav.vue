@@ -2,6 +2,7 @@
 import { getAuth, signOut } from '@firebase/auth';
 import { useUserStore } from '../../../store/user';
 import LinksNav from './LinksNav.vue';
+import imgUser from '../../../assets/user.svg'
 
 
 function signout() {
@@ -14,7 +15,6 @@ function signout() {
 }
 
 const store = useUserStore();
-
 
 </script>
 

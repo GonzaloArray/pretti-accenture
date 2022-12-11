@@ -4,7 +4,6 @@ import DivisorSection from '../components/DivisorSection.vue'
 import MessagePost from '../components/Post/MessagePost.vue';
 import Spinner from '../components/Loader/Spinner.vue';
 
-
 import { ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core';
 import { usePost } from '../store/readPost';

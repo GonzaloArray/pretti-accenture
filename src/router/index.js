@@ -33,7 +33,12 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutUsView.vue'),
-      meta:{reqiureAuth: true}
+
+    },
+    {
+      path: '/follow/:id',
+      name: 'follow',
+      component: () => import('../views/FolloweView.vue'),
 
     },
     {
@@ -58,6 +63,12 @@ const router = createRouter({
       path: '/notification',
       name: 'notification',
       component: () => import('../views/NotificationView.vue'),
+      meta:{reqiureAuth: true}
+    },
+    {
+      path: '/follower',
+      name: 'follower',
+      component: () => import('../views/FollowView.vue'),
       meta:{reqiureAuth: true}
     },
   ]

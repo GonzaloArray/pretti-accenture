@@ -2,7 +2,7 @@
     import { useUserStore } from "../../store/user";
 
     const store = useUserStore();
-
+    console.log(store)
 </script>
 <template>
     <section class="d-flex flex-column align-items-center py-3">

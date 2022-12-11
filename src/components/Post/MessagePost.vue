@@ -1,29 +1,50 @@
 <script setup>
 import { ref } from "@vue/reactivity";
-import { computed } from "@vue/runtime-core";
+import { computed, onMounted } from "@vue/runtime-core";
 import { fecha } from "../../handler/fecha";
 import ChildrenPost from "./ChildrenPost.vue";
 import Button from "../Buttons/Button.vue";
 import ButtonItem from "../Buttons/ButtonItem.vue";
 import { useUpdatePost } from "../../store/updatePost";
-import { useCollection } from "../../store/collection";
-import { addDoc, doc, updateDoc, arrayUnion } from "@firebase/firestore";
-import { usePost } from "../../store/readPost";
+import { addDoc, collection, getDocs, onSnapshot, query, where } from "@firebase/firestore";
 import { useUserStore } from "../../store/user";
 import { useDeletePost } from "../../store/deletePost";
+import { db } from "../../utils/firebase";
 
 const props = defineProps({
     model: Object
 })
 
-const collection = useCollection()
 const user = useUserStore()
 const useDelete = useDeletePost();
 
+const arrayComment = ref([]);
 const comment = ref("");
 const isOpen = ref(false);
 const isFolder = computed(() => {
-    return props.model.date.children && props.model.date.children.length
+    return arrayComment.value.length
+})
+onMounted(() => {
+    
+    const q = query(collection(db, "comment"), where("id", "==", props.model.id));
+    
+    onSnapshot(q, (querySnapshot) => {
+        const tfr = []
+        querySnapshot.forEach((doc) => {
+            const todo = {
+            id: doc.id,
+            date: doc.data(),
+            post: doc.data().post,
+            children: doc.children,
+            like: doc.like
+        }
+            tfr.push(todo)
+        });
+        arrayComment.value = tfr
+        arrayComment.value.sort((a,b)=> a.date - b.date)
+    });
+
+
 })
 
 function toggle() {
@@ -44,22 +65,20 @@ function changeType(id) {
 
         comment.value = ""
     }
-
 }
 
-const addChild = async(id) => {
 
-    const washingtonRef = doc(collection.nameCollection, id);
 
-// Atomically add a new region to the "regions" array field.
-    await updateDoc(washingtonRef, {
-        children: arrayUnion({
-            post: comment.value,
-            date: fecha(),
-            children: [],
-            like: false,
-            id: crypto.randomUUID(),
-     })
+const addChild = async (id) => {
+
+    const nameCollection = collection(db, 'comment')
+    await addDoc(nameCollection, {
+        post: comment.value,
+        date: fecha(),
+        children: [],
+        like: false,
+        id: id,
+
     });
 
 }
@@ -77,7 +96,7 @@ setInterval(() => {
             <div class="d-flex align-items-center">
                 <img :src="user.usuario.photoURL" class="me-2 with" alt="">
                 <div class="d-flex flex-column">
-                    <h2 class="fs-7 mt-2 mb-0 fw-bold fs-per">{{user.usuario.displayName}}</h2>
+                    <h2 class="fs-7 mt-2 mb-0 fw-bold fs-per">{{ user.usuario.displayName }}</h2>
                     <p class="fs-8 position-relative mt-0 mb-1 ms-3">
                         <span class="fw-bold">
                             {{ fechaJ > 1 ? `- ${fechaJ} min read` : "- right now" }}
@@ -87,7 +106,8 @@ setInterval(() => {
             </div>
 
             <p class="fs-6 mt-2">{{ model.post }}</p>
-            
+
+
             <!-- Comment -->
             <form :class="{ bold: isFolder }" @submit.prevent="changeType(model.id)">
                 <div
@@ -102,13 +122,12 @@ setInterval(() => {
                     </div>
                 </div>
 
-                <p class="item m-0 fs-7" @click="toggle" v-if="isFolder">{{ isOpen ? '[-]' : `Comments
-                    ${model.date.children.length}`
+                <p class="item m-0 fs-7" @click="toggle" v-if="isFolder">{{ isOpen ? '[-]' : `Comments ${arrayComment.length}`
                 }}</p>
             </form>
 
-            <ul class="list-group" v-show="isOpen" v-if="isFolder">
-                <ChildrenPost class="item" v-for="post in model.date.children" :id="model.id" :model="post" :key="post.id">
+            <ul class="list-group"  v-show="isOpen" v-if="isFolder">
+                <ChildrenPost class="item" v-for="post in arrayComment" :id="post.id" :model="post" :key="post.id">
                 </ChildrenPost>
             </ul>
 

@@ -5,6 +5,8 @@ import { computed, ref } from 'vue'
 export const useUserStore = defineStore('user', () => {
     // State
     const user = ref({
+        displayName: '',
+        photoURL: '',
         email: '',
         password: '',
         repassword: '',
@@ -12,7 +14,7 @@ export const useUserStore = defineStore('user', () => {
     })
 
     const usuario = ref(null);
-
+    
     const addUsuario = (user) => {
         usuario.value = user;
     }

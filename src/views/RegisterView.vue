@@ -10,17 +10,16 @@ const store = useUserStore();
 <template>
     <section class="d-flex flex-column justify-content-md-center align-items-center pt-2">
 
-        <form class="d-flex flex-column w-100 px-4 mt-5" @submit.prevent="register(store.user.email, store.user.password, store.user.repassword)">
+        <form class="d-flex flex-column w-100 px-4 mt-5" @submit.prevent="register(store.user.displayName, store.user.email, store.user.password, store.user.repassword)">
             <h2 class="fs-7 text-white">Register to your Account</h2>
-            <input class="rounded-pill py-2 ps-3 fs-per mb-3" type="text" placeholder="Email" v-model="store.user.email">
-            <input class="rounded-pill py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.password">
-            <input class="rounded-pill py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.repassword">
+            <input class="rounded-2 py-2 ps-3 fs-per mb-3" type="text" placeholder="Username" v-model="store.user.displayName">
+            <input class="rounded-2 py-2 ps-3 fs-per mb-3" type="text" placeholder="Email" v-model="store.user.email">
+            <input class="rounded-2 py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.password">
+            <input class="rounded-2 py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.repassword">
             <ButtonSubmit button="Sign up"/>
         </form>
 
         <p class="fs-7 text-white mt-4 font fw-light">-Or sign up with-</p>
-
-        
 
     </section>
 </template>

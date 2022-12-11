@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router';
 import ButtonSubmit from '../components/Form/ButtonSubmit.vue';
 import ButtonMedia from '../components/Form/Login/ButtonMedia.vue';
 import { useUserStore } from '../store/user';
@@ -6,14 +7,16 @@ import { login, loginFacebook, loginGitHub, loginGoogle } from '../utils/authFun
 
 const store = useUserStore();
 
+
+
 </script>
 <template>
     <section class="d-flex flex-column justify-content-md-center align-items-center pt-2">
 
         <form action="/home" class="d-flex flex-column w-100 px-4 mt-5" @submit.prevent="login(store.user.email, store.user.password)">
             <h2 class="fs-7 text-white">Login to your Account</h2>
-            <input class="rounded-pill py-2 ps-3 fs-per mb-3" type="text" placeholder="Email" v-model="store.user.email">
-            <input class="rounded-pill py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.password">
+            <input class="rounded-2 py-2 ps-3 fs-per mb-3" type="text" placeholder="Email" v-model="store.user.email">
+            <input class="rounded-2 py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.password">
             <ButtonSubmit button="Sign in"/>
         </form>
 
@@ -30,8 +33,8 @@ const store = useUserStore();
                 <img class="width" src="../assets/social/google.svg" alt="Google">
             </button>
         </section>
-        <p class="fs-7 text-white my-4">Dont’t have an account? <a class="text-principal" href="">Sign up</a></p>
-
+        <p class="fs-7 text-white my-4">Dont’t have an account? <RouterLink class="text-principal" to="./register">Sign up</RouterLink></p>
+        
     </section>
 </template>
 <style scoped>
