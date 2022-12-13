@@ -26,12 +26,13 @@ setInterval(() => {
 
 </script>
 <template>
-    <li class="mb-2 bg-white rounded-4 shadow  post children" :class="model.children >= 1 && 'bg-dark'">
+    <li class="mb-2 bg-white rounded-4 shadow  post children">
         <div class="py-1 px-3 position-relative">
             <div class="d-flex align-items-center">
-                <img :src="user.usuario.photoURL" class="me-2 with" alt="">
+                
+                <img :src="model.date.photoURL" class="me-2 with" alt="">
                 <div class="d-flex flex-column">
-                    <h2 class="fs-7 mt-2 mb-0 fw-bold fs-per">{{user.usuario.displayName}}</h2>
+                    <h2 class="fs-7 mt-2 mb-0 fw-bold fs-per">{{model.date.displayName}}</h2>
 
                     <p class="fs-8 position-relative mt-0 mb-1 ms-3">
                         <span class="fw-bold">
@@ -41,7 +42,7 @@ setInterval(() => {
 
                 </div>
             </div>
-
+            
             <p class="fs-6 mt-0 mb-1">{{ model.post }}</p>
 
 

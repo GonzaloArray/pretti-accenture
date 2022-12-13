@@ -1,47 +1,51 @@
 import { defineStore } from "pinia";
-import { onMounted, ref } from "vue";
-import { 
+import { computed, onMounted, ref } from "vue";
+import {
     onSnapshot,
     query, orderBy, limit
 } from 'firebase/firestore';
 import { useCollection } from "./collection";
 import { useUserStore } from "./user";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 
 export const usePost = defineStore('readPost', () => {
 
     // Collection
     const collection = useCollection();
-    const todoCollectionQuery = query(collection.nameCollection, orderBy('date', 'desc'), limit(6));
+
+    // query
+    const todoCollectionQuery = query(collection.nameCollection, orderBy('date', 'desc'));
 
     // state
     const arrayPost = ref([]);
-    const user = useUserStore()
-    
+
+
     // Mounted
-    onMounted(() => {
+
+    onAuthStateChanged(auth, (user) => {
+
+
         onSnapshot(todoCollectionQuery, (querySnapshot) => {
             const frPost = [];
             querySnapshot.forEach((doc) => {
-                
-                if (user.usuario.uid == doc.data().id) {
-                    const todo = {
-                        id: doc.id,
-                        date: doc.data(),
-                        post: doc.data().post,
-                        children: doc.children,
-                        like: doc.like
-                    }
-                    frPost.push(todo)    
+
+                const todo = {
+                    id: doc.id,
+                    date: doc.data(),
+                    post: doc.data().post,
+                    like: doc.like
                 }
+                frPost.push(todo)
 
             });
-            
 
             arrayPost.value = frPost;
         });
 
-    })
+
+    });
 
     return { arrayPost }
 })

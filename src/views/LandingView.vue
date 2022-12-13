@@ -4,9 +4,11 @@ import LadingInformation from '../components/Landing/LandingInformation.vue'
 import blog from '../assets/landing/blog.svg'
 import AsideComponent from '../components/Aside/AsideComponent.vue';
 import PremiunComponent from '../components/Premiun/PremiunComponent.vue';
+import LandingLogin from '../components/Landing/LandingLogin.vue';
 
 </script>
 <template>
+    <LandingLogin />
     <DivisorSection title="Home" subTitle="Welcome to Pretti" />
 
     <section class="bg-primario shadow text-white p-3 mb-3">

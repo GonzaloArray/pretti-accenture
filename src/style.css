@@ -111,6 +111,7 @@ body {
 .color-oscuro h4,
 .color-oscuro h5,
 .color-oscuro h6,
+.color-oscuro span,
 .color-oscuro input[type="text"],
 .color-oscuro input::placeholder
 {

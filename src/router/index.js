@@ -39,7 +39,7 @@ const router = createRouter({
       path: '/follow/:id',
       name: 'follow',
       component: () => import('../views/FolloweView.vue'),
-
+      meta:{reqiureAuth: true}
     },
     {
       path: '/register',
@@ -57,6 +57,12 @@ const router = createRouter({
       path: '/post',
       name: 'post',
       component: () => import('../views/PostView.vue'),
+      meta:{reqiureAuth: true}
+    },
+    {
+      path: '/setting',
+      name: 'setting',
+      component: () => import('../views/SettingView.vue'),
       meta:{reqiureAuth: true}
     },
     {

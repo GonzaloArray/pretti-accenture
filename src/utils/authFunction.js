@@ -14,6 +14,7 @@ import {
 import { useUserStore } from "../store/user";
 import router from "../router";
 import { addDoc, collection } from "firebase/firestore";
+import { ref } from "vue";
 
 const store = useUserStore();
 
@@ -34,7 +35,7 @@ function register(displayName, email, password) {
                 uid: auth.currentUser.uid,
                 photoURL: auth.currentUser.photoURL || "https://i.postimg.cc/htLZRTW5/perfil.png"
             });
-            
+
             const arrayUsuario = {
                 displayName: displayName,
                 photoURL: 'https://i.postimg.cc/htLZRTW5/perfil.png',
@@ -54,7 +55,6 @@ function register(displayName, email, password) {
 function login(email, password) {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            alert('¡Sesión iniciada!');
 
             updateProfile(auth.currentUser, {
                 displayName: auth.currentUser.displayName,
@@ -72,14 +72,14 @@ function login(email, password) {
 
 function loginGoogle() {
     const googleProvider = new GoogleAuthProvider();
+    const arrayUser = ref([])
 
     signInWithPopup(auth, googleProvider)
         .then(result => {
-            store.addUsuario(result.user)
 
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential?.accessToken;
+            // store.usuario = {...result}
 
+            store.addUsuario(result.user);
         })
         .catch(error => console.log(error));
 }
@@ -89,7 +89,8 @@ function loginFacebook() {
     const facebookProvider = new FacebookAuthProvider();
     signInWithPopup(auth, facebookProvider)
         .then(result => {
-            alert("Exito")
+            // store.usuario = {...result}
+
             store.addUsuario(result.user)
         })
         .catch(error => console.log(error));
@@ -100,7 +101,8 @@ function loginGitHub() {
     const githubProvider = new GithubAuthProvider();
     signInWithPopup(auth, githubProvider)
         .then(result => {
-            alert("Exito")
+            store.addUsuario(result.user)
+            
         })
         .catch(err => console.log(err));
 }
@@ -112,9 +114,6 @@ onAuthStateChanged(auth, (user) => {
     router.push('/dashboard');
 
 });
-
-
-
 
 export {
     register,

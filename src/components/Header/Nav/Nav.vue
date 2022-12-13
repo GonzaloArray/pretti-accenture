@@ -2,13 +2,21 @@
 import { getAuth, signOut } from '@firebase/auth';
 import { useUserStore } from '../../../store/user';
 import LinksNav from './LinksNav.vue';
+import LinkNav from './LinkNav.vue';
 import imgUser from '../../../assets/user.svg'
+import router from '../../../router';
+import { usePost } from '../../../store/readPost';
 
+const user = useUserStore();
 
 function signout() {
     const auth = getAuth();
     signOut(auth).then(() => {
-        alert('¡Sesión cerrada! Inicia sesión.');
+        const post = usePost()
+        post.arrayPost = [];
+        user.usuario = null;
+
+        router.push('./login')
     }).catch((error) => {
 
     });
@@ -24,26 +32,29 @@ const store = useUserStore();
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img v-if="store.existeUsuario" :src="store.usuario.photoURL" alt="Profile" class="rounded-circle logo">
+                    <img v-if="store.existeUsuario" :src="store.usuario.photoURL" alt="Profile"
+                        class="rounded-circle logo">
                     <img v-else src="../../../assets/user.svg" alt="Profile user">
                     <span class="d-none d-md-block dropdown-toggle ps-2">Heinsenberg Dev</span>
                 </a>
 
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                    <li class="dropdown-header">
-                        <h6>{{store.existeUsuario ? store.usuario.displayName: ' ------- --- ------'}}</h6>
-                        <span>{{store.existeUsuario ? store.usuario.email: ' ------- --- ------'}}</span>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
+                <section class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <ul class="m-0 p-0">
+                        <li class="dropdown-header">
+                            <h6>{{ store.existeUsuario ? store.usuario.displayName : ' ------- --- ------' }}</h6>
+                            <span>{{ store.existeUsuario ? store.usuario.email : ' ------- --- ------' }}</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
 
-                    <LinksNav title="My Profile" icon="person" />
-                    <LinksNav title="Account Settings" icon="settings" />
-                    <LinksNav title="Need Help?" icon="help_outline" />
-                    <LinksNav v-if="store.existeUsuario" title="Sign Out" icon="logout" @click="signout"/>
+                        <LinksNav title="My Profile" icon="person" />
+                        <LinksNav title="Account Settings" icon="settings" />
+                        <LinksNav title="Need Help?" icon="help_outline" />
+                        <LinksNav v-if="store.existeUsuario" title="Sign Out" icon="logout" @click="signout" />
+                    </ul>
 
-                </ul>
+                </section>
             </li>
         </ul>
     </nav>

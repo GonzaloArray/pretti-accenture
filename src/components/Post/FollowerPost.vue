@@ -9,7 +9,9 @@ const props = defineProps({
     user: Array,
 })
 
-const fechaJ = ref(0)
+const fechaJ = ref(0);
+
+fechaJ.value = Number((Date.now() - props.date) / 60000).toFixed(0);
 
 setInterval(() => {
     fechaJ.value = Number((Date.now() - props.date) / 60000).toFixed(0)
@@ -26,9 +28,8 @@ setInterval(() => {
                 <p class="fs-7 m-0">{{ fechaJ > 1 ? `- ${fechaJ} min read` : "- right now" }}</p>
             </div>
         </div>
-        <h2 class="fs-5">{{post}}</h2>
+        <h2 class="fs-6 mt-2">{{post}}</h2>
     </section>
-
 </template>
 
 

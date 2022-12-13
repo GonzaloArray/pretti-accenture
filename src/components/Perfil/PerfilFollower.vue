@@ -8,7 +8,7 @@ const props = defineProps({
 
 <template>
     <section class="d-flex p-2 justify-content-center align-items-center flex-column">
-        <img class="width" :src="photo" :alt="name">
+        <img class="width rounded-circle mb-2" :src="photo" :alt="name">
         <h2 class="fw-bold fs-1 text-light">{{name}}</h2>
         <h3 class="fs-6 text-light">{{email}}</h3>  
     </section>

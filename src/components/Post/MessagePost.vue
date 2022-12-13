@@ -25,23 +25,24 @@ const isFolder = computed(() => {
     return arrayComment.value.length
 })
 onMounted(() => {
-    
+
     const q = query(collection(db, "comment"), where("id", "==", props.model.id));
-    
+
     onSnapshot(q, (querySnapshot) => {
         const tfr = []
         querySnapshot.forEach((doc) => {
             const todo = {
-            id: doc.id,
-            date: doc.data(),
-            post: doc.data().post,
-            children: doc.children,
-            like: doc.like
-        }
+                id: doc.id,
+                date: doc.data(),
+                post: doc.data().post,
+                like: false,
+                photoURL: user.usuario.photoURL,
+                displayName: user.usuario.displayName
+            }
             tfr.push(todo)
         });
         arrayComment.value = tfr
-        arrayComment.value.sort((a,b)=> a.date - b.date)
+        arrayComment.value.sort((a, b) => a.date - b.date)
     });
 
 
@@ -58,7 +59,6 @@ function changeType(id) {
             addChild(id);
 
         } else if (!isFolder.value) {
-            props.model.date.children = []
             addChild(id)
             isOpen.value = true;
         }
@@ -75,7 +75,8 @@ const addChild = async (id) => {
     await addDoc(nameCollection, {
         post: comment.value,
         date: fecha(),
-        children: [],
+        photoURL: user.usuario.photoURL,
+        displayName: user.usuario.displayName,
         like: false,
         id: id,
 
@@ -84,6 +85,8 @@ const addChild = async (id) => {
 }
 
 const fechaJ = ref(0)
+
+fechaJ.value = Number((Date.now() - props.model.date.date) / 60000).toFixed(0)
 
 setInterval(() => {
     fechaJ.value = Number((Date.now() - props.model.date.date) / 60000).toFixed(0)
@@ -94,9 +97,10 @@ setInterval(() => {
     <li class="my-2 bg-white rounded-1 shadow post" :class="model.date.children >= 1 && 'bg-dark'">
         <div class="pb-2 px-3 position-relative">
             <div class="d-flex align-items-center">
-                <img :src="user.usuario.photoURL" class="me-2 with" alt="">
+                <img :src="model.date.displayName ? model.date.photoURL : ''" class="me-2 with" alt="">
                 <div class="d-flex flex-column">
-                    <h2 class="fs-7 mt-2 mb-0 fw-bold fs-per">{{ user.usuario.displayName }}</h2>
+                    
+                    <h2 class="fs-7 mt-2 mb-0 fw-bold fs-per">{{ model.date.displayName }}</h2>
                     <p class="fs-8 position-relative mt-0 mb-1 ms-3">
                         <span class="fw-bold">
                             {{ fechaJ > 1 ? `- ${fechaJ} min read` : "- right now" }}
@@ -122,11 +126,12 @@ setInterval(() => {
                     </div>
                 </div>
 
-                <p class="item m-0 fs-7" @click="toggle" v-if="isFolder">{{ isOpen ? '[-]' : `Comments ${arrayComment.length}`
+                <p class="item m-0 fs-7" @click="toggle" v-if="isFolder">{{ isOpen ? '[-]' : `Comments
+                                    ${arrayComment.length}`
                 }}</p>
             </form>
 
-            <ul class="list-group"  v-show="isOpen" v-if="isFolder">
+            <ul class="list-group" v-show="isOpen" v-if="isFolder">
                 <ChildrenPost class="item" v-for="post in arrayComment" :id="post.id" :model="post" :key="post.id">
                 </ChildrenPost>
             </ul>

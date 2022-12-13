@@ -15,7 +15,7 @@ const store = useUserStore();
 
         <form action="/home" class="d-flex flex-column w-100 px-4 mt-5" @submit.prevent="login(store.user.email, store.user.password)">
             <h2 class="fs-7 text-white">Login to your Account</h2>
-            <input class="rounded-2 py-2 ps-3 fs-per mb-3" type="text" placeholder="Email" v-model="store.user.email">
+            <input class="rounded-2 py-2 ps-3 fs-per mb-3" type="email" placeholder="Email" v-model="store.user.email">
             <input class="rounded-2 py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.password">
             <ButtonSubmit button="Sign in"/>
         </form>

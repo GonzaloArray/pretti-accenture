@@ -13,7 +13,7 @@ const store = useUserStore();
         <form class="d-flex flex-column w-100 px-4 mt-5" @submit.prevent="register(store.user.displayName, store.user.email, store.user.password, store.user.repassword)">
             <h2 class="fs-7 text-white">Register to your Account</h2>
             <input class="rounded-2 py-2 ps-3 fs-per mb-3" type="text" placeholder="Username" v-model="store.user.displayName">
-            <input class="rounded-2 py-2 ps-3 fs-per mb-3" type="text" placeholder="Email" v-model="store.user.email">
+            <input class="rounded-2 py-2 ps-3 fs-per mb-3" type="email" placeholder="Email" v-model="store.user.email">
             <input class="rounded-2 py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.password">
             <input class="rounded-2 py-2 ps-3 fs-per mb-4" type="password" placeholder="Password" v-model="store.user.repassword">
             <ButtonSubmit button="Sign up"/>

@@ -2,6 +2,7 @@ import { addDoc } from "firebase/firestore";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { fecha } from '../handler/fecha'
+import router from "../router";
 import { useCollection } from "./collection";
 import { useUserStore } from "./user";
 
@@ -19,10 +20,13 @@ export const useSendPost = defineStore('sendPost', () => {
                     post: comment.value,
                     date: fecha(),
                     like: false,
-                    id: user.usuario.uid
+                    id: user.usuario.uid,
+                    photoURL: user.usuario.photoURL,
+                    displayName: user.usuario.displayName,
                 });
     
                 comment.value = ""
+                router.push('/dashboard');
             }
         }
     
@@ -35,3 +39,4 @@ export const useSendPost = defineStore('sendPost', () => {
     }
 
 })
+

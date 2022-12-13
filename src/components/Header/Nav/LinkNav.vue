@@ -5,18 +5,19 @@ import { RouterLink } from "vue-router"
 const props = defineProps({
     title: String,
     icon: String,
+    href: String
 })
 
 </script>
 <template>
     <div>
         <li>
-            <a class="dropdown-item d-flex align-items-center">
+            <RouterLink :to="'/'+href" class="dropdown-item d-flex align-items-center">
                 <span class="material-icons-outlined opacity me-2">
                     {{icon}}
                 </span>
                 <span>{{title}}</span>
-            </a>
+            </RouterLink>
         </li>
         <li>
             <hr class="dropdown-divider">

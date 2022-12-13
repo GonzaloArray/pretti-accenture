@@ -1,25 +1,27 @@
 <script setup>
 import ButtonInteraction from '../components/Post/ButtonInteraction.vue';
+import { useSendPost } from '../store/sendPost';
 import { useUserStore } from '../store/user';
 
 const store = useUserStore();
-  
+const send = useSendPost();
+
 </script>
 
 <template>
 
-  <section class="bg-white height rounded-2 shadow p-2 position-relative">
+  <form @submit.prevent="send.handlePost()" class="bg-white height rounded-2 shadow p-2 position-relative">
     <div class="d-flex justify-content-between align-items-end">
       <h2 class="fs-6 fw-bold">Create Post</h2>
-      <button class="btn btn-sm btn-primary">Post</button>
+      <button type="submit" class="btn btn-sm btn-primary">Post</button>
     </div>
     <hr>
     <div>
       <div class="d-flex align-items-center mb-3">
-        <img :src="store.existeUsuario ? store.usuario.photoURL : '../assets/logo.png'" class="me-2 width border border-1 border-secondary rounded-circle"
-          alt="Perfil de mindhub">
+        <img :src="store.existeUsuario ? store.usuario.photoURL : '../assets/logo.png'"
+          class="me-2 width border border-1 border-secondary rounded-circle" alt="Perfil de mindhub">
         <div>
-          <h2 class="fs-6 fw-bold mb-1">{{(store.existeUsuario ? store.usuario.displayName: "User14312341234")}}</h2>
+          <h2 class="fs-6 fw-bold mb-1">{{ (store.existeUsuario ? store.usuario.displayName : "User14312341234") }}</h2>
           <div>
             <select class="fs-7 border p-1 fw-bold" name="" id="">
               <option value="asdf"> Only me </option>
@@ -27,16 +29,16 @@ const store = useUserStore();
           </div>
         </div>
       </div>
-      <textarea class="w-100 border-0 textarea post text-secondary" placeholder="What's on your mind?"></textarea>
-      <div class="row d-flex justify-content-center position-absolute bottom-0 end-0 start-0">
-        <ButtonInteraction icon="filter"/>
-        <ButtonInteraction icon="new_label"/>
-        <ButtonInteraction icon="add_reaction"/>
-        <ButtonInteraction icon="pin_drop"/>
-        <ButtonInteraction icon="more_horiz"/>
+      <textarea class="w-100 border-0 textarea post text-secondary" v-model="send.comment" placeholder="What's on your mind?"></textarea>
+      <div class="d-flex justify-content-center position-absolute bottom-0 end-0 start-0">
+        <ButtonInteraction icon="filter" />
+        <ButtonInteraction icon="new_label" />
+        <ButtonInteraction icon="add_reaction" />
+        <ButtonInteraction icon="pin_drop" />
+        <ButtonInteraction icon="more_horiz" />
       </div>
     </div>
-  </section>
+  </form>
 
 
 </template>    
@@ -48,7 +50,7 @@ const store = useUserStore();
 
 .textarea {
   outline: none;
-  height: 55vh;
+  height: 47vh;
 }
 
 .height {
