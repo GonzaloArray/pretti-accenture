@@ -45,8 +45,7 @@ setInterval(() => {
             
             <p class="fs-6 mt-0 mb-1">{{ model.post }}</p>
 
-
-            <button class="position-absolute top-0 end-0 me-2 mt-1 border-0 bg-transparent" type="button"
+            <button v-if="user.existeUsuario && user.usuario.uid == model.date.id_user" class="position-absolute top-0 end-0 me-2 mt-1 border-0 bg-transparent" type="button"
                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="material-icons-outlined">
                     more_horiz

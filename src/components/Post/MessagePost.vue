@@ -42,7 +42,7 @@ onMounted(() => {
             tfr.push(todo)
         });
         arrayComment.value = tfr
-        arrayComment.value.sort((a, b) => a.date - b.date)
+        arrayComment.value.sort((a, b) => b.date - a.date)
     });
 
 
