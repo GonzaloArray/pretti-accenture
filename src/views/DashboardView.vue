@@ -32,7 +32,7 @@ const user = useUserStore()
 
         <div class="col-12 col-md-8 me-2">
             <!-- Send Post -->
-            <SendPost />
+            <SendPost v-if="store.existeUsuario"/>
             <h2 v-show="readPost.arrayPost.length == 0" class="text-center bg-dark py-2 text-light fs-6">Not post anything</h2>
             <img v-show="readPost.arrayPost.length == 0" class="width mx-auto" :src="imgNull" alt="Imagen not found">
 
