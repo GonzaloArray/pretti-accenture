@@ -1,5 +1,4 @@
 import { auth, db } from "./firebase";
-import Swal from 'sweetalert2'
 import {
     createUserWithEmailAndPassword,
     FacebookAuthProvider,

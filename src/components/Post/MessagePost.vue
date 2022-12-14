@@ -36,8 +36,8 @@ onMounted(() => {
                 date: doc.data(),
                 post: doc.data().post,
                 like: false,
-                photoURL: user.usuario.photoURL,
-                displayName: user.usuario.displayName
+                photoURL: doc.data().photoURL,
+                displayName: doc.data().displayName
             }
             tfr.push(todo)
         });
@@ -77,6 +77,7 @@ const addChild = async (id) => {
         date: fecha(),
         photoURL: user.usuario.photoURL,
         displayName: user.usuario.displayName,
+        id_user: user.usuario.uid,
         like: false,
         id: id,
 
@@ -114,7 +115,7 @@ setInterval(() => {
 
             <!-- Comment -->
             <form :class="{ bold: isFolder }" @submit.prevent="changeType(model.id)">
-                <div
+                <div v-if="user.existeUsuario"
                     class="height rounded-pill border-0 px-2 mb-4 mb-md-2 withComment comment d-flex justify-content-between align-items-center">
                     <input v-model="comment" type="text" class="fs-7 border-0 bg-transparent outline"
                         placeholder="comment post...">
@@ -137,13 +138,13 @@ setInterval(() => {
             </ul>
 
 
-            <button class="position-absolute top-0 end-0 me-2 mt-1 border-0 bg-transparent" type="button"
+            <button v-if="user.existeUsuario && user.usuario " class="position-absolute top-0 end-0 me-2 mt-1 border-0 bg-transparent" type="button"
                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="material-icons-outlined">
                     more_horiz
                 </span>
             </button>
-            <ul class="dropdown-menu rounded-1 shadow p-0 post" aria-labelledby="dropdownMenuButton1">
+            <ul  class="dropdown-menu rounded-1 shadow p-0 post" aria-labelledby="dropdownMenuButton1">
                 <ButtonItem icon="edit" info="Edit" />
                 <ButtonItem icon="share" info="Share" />
                 <ButtonItem icon="delete_forever" info="Remove" @click.prevent="useDelete.handleDelete(model.id)" />

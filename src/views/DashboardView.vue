@@ -25,7 +25,7 @@ const user = useUserStore()
 
             <div v-if="readPost.arrayPost !== null">
                 <ul class="ul">
-                    <Spinner v-if="(user.existeUsuario == false)" />
+                    <!-- <Spinner v-if="(user.existeUsuario == false)" /> -->
                     <MessagePost v-for="post in readPost.arrayPost" :key="post.id" :model="post" />
                 </ul>
             </div>

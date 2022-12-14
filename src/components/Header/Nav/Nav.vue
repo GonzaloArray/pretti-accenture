@@ -6,6 +6,7 @@ import LinkNav from './LinkNav.vue';
 import imgUser from '../../../assets/user.svg'
 import router from '../../../router';
 import { usePost } from '../../../store/readPost';
+import { RouterLink } from 'vue-router';
 
 const user = useUserStore();
 
@@ -48,10 +49,16 @@ const store = useUserStore();
                             <hr class="dropdown-divider">
                         </li>
 
-                        <LinksNav title="My Profile" icon="person" />
-                        <LinksNav title="Account Settings" icon="settings" />
-                        <LinksNav title="Need Help?" icon="help_outline" />
-                        <LinksNav v-if="store.existeUsuario" title="Sign Out" icon="logout" @click="signout" />
+                        <div v-if="user.existeUsuario">
+                            <LinkNav href="profile" title="My Profile" icon="person" />
+                            <LinkNav href="setting" title="Account Settings" icon="settings" />
+                            <LinkNav href="contact" title="Need Help?" icon="help_outline" />
+                            <LinksNav title="Sign Out" icon="logout" @click="signout" />
+                        </div>
+                        <div v-else class="d-flex justify-content-evenly align-items-center mb-2">
+                            <RouterLink class="btn btn-sm btn-primary  px-3" to="/login">Sing In</RouterLink>
+                            <RouterLink class="btn btn-sm btn-white border-1 px-3 border-primary text-primary" to="/register">Sing Up</RouterLink>
+                        </div>
                     </ul>
 
                 </section>

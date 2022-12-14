@@ -26,6 +26,7 @@ const router = createRouter({
       path: '/profile',
       name: 'profile',
       component: () => import('../views/ProfileView.vue'),
+      meta:{reqiureAuth: true}
     },
     {
       path: '/about',
@@ -37,6 +38,7 @@ const router = createRouter({
       path: '/follow/:id',
       name: 'follow',
       component: () => import('../views/FolloweView.vue'),
+      meta:{reqiureAuth: true}
     },
     {
       path: '/register',
@@ -47,31 +49,45 @@ const router = createRouter({
       path: '/contact',
       name: 'contact',
       component: () => import('../views/ContactView.vue'),
+      meta:{reqiureAuth: true}
 
     },
     {
       path: '/post',
       name: 'post',
       component: () => import('../views/PostView.vue'),
+      meta:{reqiureAuth: true}
     },
     {
       path: '/setting',
       name: 'setting',
       component: () => import('../views/SettingView.vue'),
+      meta:{reqiureAuth: true}
     },
     {
       path: '/notification',
       name: 'notification',
       component: () => import('../views/NotificationView.vue'),
+      meta:{reqiureAuth: true}
     },
     {
       path: '/follower',
       name: 'follower',
       component: () => import('../views/FollowView.vue'),
+      meta:{reqiureAuth: true}
     },
   ]
 })
 
+router.beforeEach((to, from, next) => {
+  const rutaAuth = to.matched.some(record => record.meta.reqiureAuth);
+  const user = auth.currentUser;
 
+  if (rutaAuth && user == null) {
+    next({name: 'login'})
+  }else{
+    next();
+  }
+})
 
 export default router
