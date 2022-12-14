@@ -98,9 +98,8 @@ setInterval(() => {
     <li class="my-2 bg-white rounded-1 shadow post" :class="model.date.children >= 1 && 'bg-dark'">
         <div class="pb-2 px-3 position-relative">
             <div class="d-flex align-items-center">
-                <img :src="model.date.displayName ? model.date.photoURL : ''" class="me-2 with" alt="">
+                <img :src="model.date.displayName ? model.date.photoURL : ''" class="rounded-circle me-2 with" alt="">
                 <div class="d-flex flex-column">
-                    
                     <h2 class="fs-7 mt-2 mb-0 fw-bold fs-per">{{ model.date.displayName }}</h2>
                     <p class="fs-8 position-relative mt-0 mb-1 ms-3">
                         <span class="fw-bold">

@@ -10,19 +10,26 @@ import img_follow from '../../assets/follower/user_follower.svg'
         <h2 class="text-white fs-5">No users available</h2>
         <img :src="img_follow" alt="User available">
     </div>
-    <div class="bg-white px-2 py-2 my-2 rounded-2 d-flex justify-content-between align-items-center" v-for="follow in follower.arrayFollow" :key="follow.id">
-        <div class="d-flex align-items-center">
-            <img class="width me-2 rounded-circle" :src="follow.date.photoURL" alt="">
-            <h2 class="fw-bold fs-6 m-0">{{follow.date.name}}</h2>
+    <section class="row g-2">
+        <div class="col-6 col-md-4" v-for="follow in follower.arrayFollow" :key="follow.id">
+            <div class="d-flex flex-column justify-content-center align-items-center bg-light pb-2 rounded-1">
+                <div class="bg-dark w-100 d-flex justify-content-center position-relative py-3 shadow rounded-1">
+                    <img class="width position-absolute position rounded-circle" :src="follow.date.photoURL" :alt="follow.date.name">
+                </div>
+                <h2 class="fw-bold fs-7 mt-4 py-1 mb-0">{{follow.date.name}}</h2>
+                <RouterLink class="mt-3 w-75 btn btn-sm rounded-pill btn-sm fs-7 btn-light border border-primary text-primary" :to="{name: 'follow', params: { id: follow.date.uid}}">View</RouterLink>
+            </div>
+    
         </div>
-        <RouterLink class="btn btn-sm btn-primary rounded-1" :to="{name: 'follow', params: { id: follow.date.uid}}">view</RouterLink>
-
-    </div>
+    </section>
 </template>
 
 
 <style scoped>
     .width{
-        width: 2.3rem;
+        width: 3rem;
+    }
+    .position{
+        bottom: -1.4rem;
     }
 </style>
