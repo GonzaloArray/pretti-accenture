@@ -14,10 +14,8 @@ import {
 import { useUserStore } from "../store/user";
 import router from "../router";
 import { addDoc, collection } from "firebase/firestore";
-import { ref } from "vue";
 
 const store = useUserStore();
-
 
 function register(displayName, email, password) {
     createUserWithEmailAndPassword(auth, email, password)
@@ -72,14 +70,11 @@ function login(email, password) {
 
 function loginGoogle() {
     const googleProvider = new GoogleAuthProvider();
-    const arrayUser = ref([])
 
     signInWithPopup(auth, googleProvider)
         .then(result => {
-
-            // store.usuario = {...result}
-
             store.addUsuario(result.user);
+
         })
         .catch(error => console.log(error));
 }
