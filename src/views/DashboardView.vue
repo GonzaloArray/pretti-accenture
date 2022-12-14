@@ -9,6 +9,19 @@ import { ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core';
 import { usePost } from '../store/readPost';
 import { useUserStore } from '../store/user';
+import { onAuthStateChanged } from '@firebase/auth';
+import router from '../router';
+import { auth } from '../utils/firebase';
+
+const store = useUserStore()
+
+onAuthStateChanged(auth, (user) => {
+
+    store.addUsuario(user);
+
+    router.push('/dashboard');
+
+});
 
 const readPost = usePost();
 const user = useUserStore()
