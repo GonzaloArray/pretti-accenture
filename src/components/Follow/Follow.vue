@@ -10,10 +10,11 @@ import img_follow from '../../assets/follower/user_follower.svg'
         <h2 class="text-white fs-5">No users available</h2>
         <img :src="img_follow" alt="User available">
     </div>
-    <section class="row g-2">
+    <section class="row gx-2 gy-4">
         <div class="col-6 col-md-4" v-for="follow in follower.arrayFollow" :key="follow.id">
             <div class="d-flex flex-column justify-content-center align-items-center bg-light pb-2 rounded-1">
                 <div class="bg-dark w-100 d-flex justify-content-center position-relative py-3 shadow rounded-1">
+                    <p class="m-0 position-absolute start-0 text-light ms-2 fw-bold">Pretti</p>
                     <img class="width position-absolute position rounded-circle" :src="follow.date.photoURL" :alt="follow.date.name">
                 </div>
                 <h2 class="fw-bold fs-7 mt-4 py-1 mb-0">{{follow.date.name}}</h2>
