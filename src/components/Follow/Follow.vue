@@ -11,7 +11,7 @@ import img_follow from '../../assets/follower/user_follower.svg'
         <img :src="img_follow" alt="User available">
     </div>
     <section class="row gx-2 gy-4">
-        <div class="col-6 col-md-4" v-for="follow in follower.arrayFollow" :key="follow.id">
+        <div class="col-6 col-sm-3" v-for="follow in follower.arrayFollow" :key="follow.id">
             <div class="d-flex flex-column justify-content-center align-items-center bg-light pb-2 rounded-1">
                 <div class="bg-dark w-100 d-flex justify-content-center position-relative py-3 shadow rounded-1">
                     <img class="width position-absolute position rounded-circle" :src="follow.date.photoURL" :alt="follow.date.name">
