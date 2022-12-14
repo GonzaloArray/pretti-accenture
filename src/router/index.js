@@ -72,15 +72,6 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  const rutaAuth = to.matched.some(record => record.meta.reqiureAuth);
-  const user = auth.currentUser;
 
-  if (rutaAuth && user == null) {
-    next({name: 'login'})
-  }else{
-    next();
-  }
-})
 
 export default router
