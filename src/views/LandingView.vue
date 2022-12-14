@@ -6,8 +6,17 @@ import AsideComponent from '../components/Aside/AsideComponent.vue';
 import PremiunComponent from '../components/Premiun/PremiunComponent.vue';
 import LandingLogin from '../components/Landing/LandingLogin.vue';
 import { useUserStore } from '../store/user';
+import router from '../router';
+import { onAuthStateChanged } from '@firebase/auth';
+import { auth } from '../utils/firebase';
 
 const user = useUserStore();
+
+onAuthStateChanged(auth, (user1) => {
+
+    user.addUsuario(user1);
+
+});
 
 </script>
 <template>
