@@ -5,6 +5,9 @@ import blog from '../assets/landing/blog.svg'
 import AsideComponent from '../components/Aside/AsideComponent.vue';
 import PremiunComponent from '../components/Premiun/PremiunComponent.vue';
 import LandingLogin from '../components/Landing/LandingLogin.vue';
+import { useUserStore } from '../store/user';
+
+const user = useUserStore();
 
 </script>
 <template>
@@ -19,7 +22,7 @@ import LandingLogin from '../components/Landing/LandingLogin.vue';
     </section>
     <DivisorSection title="Home" subTitle="Blog" />
     <div class="mb-3">
-        <AsideComponent />
+        <AsideComponent v-if="user.existeUsuario" />
         <PremiunComponent />
     </div>
 

@@ -23,6 +23,7 @@ export const useSendPost = defineStore('sendPost', () => {
                     id: user.usuario.uid,
                     photoURL: user.usuario.photoURL,
                     displayName: user.usuario.displayName,
+                    id_user: user.usuario.uid,
                 });
     
                 comment.value = ""

@@ -7,6 +7,7 @@ import { collection, getDocs, query, where } from "@firebase/firestore";
 import FollowerPost from "../components/Post/FollowerPost.vue";
 import PerfilFollower from "../components/Perfil/PerfilFollower.vue";
 import imgNull from '../assets/social/trip.svg'
+import FollowSocial from "../components/Follow/FollowSocial/FollowSocial.vue";
 
 const follow = useFollower();
 const route = useRoute();
@@ -60,6 +61,8 @@ onMounted(async () => {
     <!-- Follower Post -->
     <PerfilFollower v-for="user in userFollow" :key="user.date.uid" :email="user.date.email" :photo="user.date.photoURL"
         :name="user.date.name" />
+
+    <FollowSocial/>
 
     <div v-if="arrayPost.length == 0" class="d-flex justify-content-center align-items-center flex-column">
         <h2 class="bg-dark text-light py-2 fs-6 text-center px-5">Not comment</h2>

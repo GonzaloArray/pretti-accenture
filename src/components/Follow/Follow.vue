@@ -19,7 +19,6 @@ import img_follow from '../../assets/follower/user_follower.svg'
                 <h2 class="fw-bold fs-7 mt-4 py-1 mb-0">{{follow.date.name}}</h2>
                 <RouterLink class="mt-3 w-75 btn btn-sm rounded-pill btn-sm fs-7 btn-light border border-primary text-primary" :to="{name: 'follow', params: { id: follow.date.uid}}">View</RouterLink>
             </div>
-    
         </div>
     </section>
 </template>

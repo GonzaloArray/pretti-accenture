@@ -136,8 +136,7 @@ setInterval(() => {
                 </ChildrenPost>
             </ul>
 
-
-            <button v-if="user.existeUsuario && user.usuario " class="position-absolute top-0 end-0 me-2 mt-1 border-0 bg-transparent" type="button"
+            <button v-if="user.existeUsuario && user.usuario.uid == model.date.id" class="position-absolute top-0 end-0 me-2 mt-1 border-0 bg-transparent" type="button"
                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="material-icons-outlined">
                     more_horiz
